@@ -1,0 +1,221 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block css %}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.3.0/css/all.min.css" />
+<link rel="stylesheet" href='{% static '/css/index.css' %}?{% now "U" %}'>
+{% endblock %}
+
+
+{% block content %}
+  <!-----------------Main------------------->
+  <div class="container padding-x">
+    <aside>
+        <div class="recentposts">
+            <h3 class="title">Ən son reseptlər:</h3>
+           
+            <ol> {% for blog in blog %}
+                <li><a href="{% url 'blogdetails' blog.slug %}">{{blog.title | truncatechars:60}}</a></li>
+{% endfor %}
+            </ol>
+        </div>
+        <div class="categories">
+            <h3 class="title">Ən son bloglar:</h3>
+            <ol> {% for blog in wrts %}
+                <li><a href="{% url 'blogdetail' blog.slug %}">{{blog.title | truncatechars:60}}</a></li>
+{% endfor %}
+            </ol>
+
+        </div>
+        <div class="facebookpage">
+            <h1>Sosyal Medya:</h1>
+            <div class="fb-page" data-tabs="timeline,events,messages"
+                data-href="https://www.facebook.com/Sultan-Glutensiz-Mutfak-125931938001197" data-width="380"
+                data-hide-cover="false"></div>
+        </div>
+    </aside>
+    <div class="homeposts">
+        <!---------------Slider--------------->
+        <h3 class="title">Həftənin ən çox dəftərə əlavə edilən reseptləri</h3>
+        <div class="cards">
+            <div class="swiper mySwiper">
+                <div class="swiper-wrapper">
+                    {% for blog in blog  %}
+                    <div class="swiper-slide">
+                        {% include 'partials/__recipecard.html' %}
+                    </div>
+                    {% endfor %}
+                    <div class="swiper-slide">
+                        <div class="all-posts">
+                            <a href="{% url 'recipes' %}">Bütün Reseptlere Bax <i class="fa-solid fa-arrow-right-long"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+           
+
+        </div>
+
+        <!-------x-------Slider-------x------->
+            <!---------------Slider--------------->
+            <h3 class="title">15 dəqiqədən az vaxtınızı alacaq reseptlər</h3>
+            <div class="cards">
+                <div class="swiper mySwiper">
+                    <div class="swiper-wrapper">
+                        {% for blog in time %}
+                        <div class="swiper-slide">
+                            {% include 'partials/__recipecard.html' %}
+                        </div>
+                        {% endfor %}
+                        <div class="swiper-slide">
+                            <div class="all-posts">
+                                <a href="{% url 'recipes' %}">Bütün Reseptlere Bax <i class="fa-solid fa-arrow-right-long"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+               
+    
+            </div>
+    
+            <!-------x-------Slider-------x------->
+        <!---------------Post--------------->
+        <h3 class="title">Pəhriz Reseptləri</h3>
+        <div class="cards">
+            <div class="swiper mySwiper">
+                <div class="swiper-wrapper">
+                    {% for blog in diet  %}
+                    <div class="swiper-slide">
+                        {% include 'partials/__recipecard.html' %}
+                    </div>
+                   
+                    {% endfor %}
+                    <div class="swiper-slide">
+                        <div class="all-posts">
+                            <a href="{% url 'recipe-category' 'dietwjHM' %}">Bütün pəhriz reseptlərinə bax <i class="fa-solid fa-arrow-right-long"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+           
+
+        </div>
+        <h3 class="title">Faydalı Bloglar</h3>
+        <div class="cards">
+            <div class="swiper mySwiper">
+                <div class="swiper-wrapper"> {% for blog in wrts %}
+                    <div class="swiper-slide">
+                       
+                        {% include 'partials/__blogcard.html' %}
+                    </div>{% endfor %}
+
+                    <div class="swiper-slide">
+                        <div class="all-posts">
+                            <a href="{% url 'blogs' %}">Bütün Bloglara Bax <i class="fa-solid fa-arrow-right-long"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+           
+
+        </div>
+        <h3 class="title">Videolu Reseptlər</h3>
+        <div class="cards">
+            <div class="swiper mySwiper">
+                <div class="swiper-wrapper">
+                    {% for blog in like  %}
+                    <div class="swiper-slide">
+                        {% include 'partials/__recipecard.html' %}
+                    </div>
+                    {% endfor %}
+
+                    <div class="swiper-slide">
+                        <div class="all-posts">
+                            <a >Bütün Yuksek Reytinglilere Bax <i class="fa-solid fa-arrow-right-long"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+           
+
+        </div>
+        <h3 class="title">Kategorialar</h3>
+        <div class="cards">
+            <div class="swiper mySwiper1">
+                <div class="swiper-wrapper">
+                    {% for category in category %}
+                    <div class="swiper-slide">
+                        {% include 'partials/__categorycard.html' %}
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+           
+
+        </div>
+        <!-------x-------Post-------x------->
+
+
+    </div>
+</div>
+
+
+
+<!-------x---------Main-----------x------->
+{% endblock  %}
+
+{% block  js %}
+
+<script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+<script src="https://connect.facebook.net/ru_RU/sdk.js#xfbml=1&amp;version=v2.5"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
+    <script>
+        var swiper = new Swiper(".mySwiper", {
+            slidesPerView: 1,
+            spaceBetween: 10,
+            slidesPerGroup: 1,
+            loopFillGroupWithBlank: true,
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+            breakpoints: {
+                640: {
+                  slidesPerView: 1,
+                  spaceBetween: 10,
+                },
+                768: {
+                  slidesPerView: 2,
+                  spaceBetween: 10,
+                },
+                1024: {
+                  slidesPerView: 3,
+                  spaceBetween: 10,
+                },
+              },
+        });
+        var swiper= new Swiper(".mySwiper1", {
+            slidesPerView: 5,
+            spaceBetween: 30,
+            slidesPerGroup: 2,
+            loopFillGroupWithBlank: true,
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+            
+        });
+    </script>
+
+{% endblock  %}

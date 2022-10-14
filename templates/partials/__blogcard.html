@@ -1,0 +1,56 @@
+{% load static %}
+
+<div class="post-card">
+    {% if blog.owner.id == user.profile.id %}
+    <div class="dots">
+        <i class="fa-solid fa-ellipsis-vertical"></i>
+    </div>
+    <div class="crud">
+        <a href="{% url 'updateblog' blog.id %}"><li>Düzəliş et</li></a>
+        <a href="{% url 'deleteBlog' blog.id %}"><li>Sil</li></a>
+    </div>
+    {% endif %}
+    <div class="img">
+        <img src="{{blog.image.url}}" alt="">
+    </div>
+    <div class="category">
+        <div class="post-category">
+            <p>{{blog.category}}</p>
+        </div>
+        
+        <div class="stars"><i class="fa-regular fa-eye"></i> 5</div>
+    </div>
+    <div class="title">
+        <h4>{{blog.title | truncatechars:40}}</h4>
+    </div>
+    {% if blog.owner.id == user.profile.id %}
+    <a href="{% url 'profile' user.profile.slug %}" class="profile">
+      <div class="profile">
+          <div class="profile-photo">
+              {% if blog.owner.profile_image %}
+              <img src="{{blog.owner.profile_image.url}}" alt="">
+            
+              {% endif %}</div>
+          <div class="name-date">
+              <p class="name">{{blog.owner.name}}</p>
+              <p class="date">{{blog.created}}</p>
+          </div>
+      </div>
+  </a>
+  {% else %}
+  <a href="{% url 'Account' blog.owner.slug %}" class="profile">
+      <div class="profile">
+          <div class="profile-photo">
+              {% if blog.owner.profile_image %}
+              <img src="{{blog.owner.profile_image.url}}" alt="">
+            
+              {% endif %}</div>
+          <div class="name-date">
+              <p class="name">{{blog.owner.name}}</p>
+              <p class="date">{{blog.created}}</p>
+          </div>
+      </div>
+  </a>
+    {% endif %}
+
+</div>

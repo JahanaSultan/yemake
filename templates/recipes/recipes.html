@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href='{% static '/css/index.css' %}?{% now "U" %}'>
+{% endblock  %}
+{% block title %}
+<title>Reseptler</title>
+{% endblock %}
+
+
+{% block content %}
+<h3 class='title'>Reseptlər</h3>
+<div class="cards padding-x">
+{% if blog %}
+ {% for blog in blog  %}
+     <div class="card">
+    {% include 'partials/__recipecard.html' %}
+    </div>
+    {% endfor %}
+{% else %}
+<div class="notfound">
+<p><i class="fa-solid fa-magnifying-glass"></i></p>
+<h1>Nəticə Tapılmadı!</h1>
+<a href="{% url 'index' %}" class="back">Ana Səhifəyə Qayıt</a></div>
+{% endif %}
+
+
+   
+
+</div>
+{% include "partials/__paginations.html" %}
+
+{% endblock  %}
+

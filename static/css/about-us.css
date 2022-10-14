@@ -1,0 +1,25 @@
+.about-us{
+  display: flex;
+  padding-left: 0;
+}
+.text{
+  padding-top: 20px;
+  font-weight: 300;
+}
+.text-div{
+  margin-left: 10px;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.text-div .title{
+  margin: 0;
+width: 100%;
+}
+.about-us img{
+  width: 50%;
+  height: 500px;
+  object-fit: cover;
+  margin-top: -16px;
+}

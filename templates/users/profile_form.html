@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href='{% static '/css/profile-form.css' %}?{% now "U" %}'>
+{% endblock css %}
+
+
+{% block title %}
+<title>Tənzimləmələr</title>
+
+{% endblock title %}
+
+{% block content %}
+<div class="profile-form padding-x">
+<h3 class="title">Profilini Tənzimlə</h3>
+
+<form action="{% url 'edit-account' %}" method='POST' enctype="multipart/form-data">
+{% csrf_token %}
+{% for field in form %}
+<div class="field">
+<label for="formInput#text">{{field.label}}</label>
+{{field}}
+</div>
+{% for error in field.errors %}
+<p class="error">{{error}}</p>
+{% endfor %}
+{% endfor %}
+
+    <input type="submit" value="Təsdiqlə">
+</form>
+</div>
+{% endblock content %}

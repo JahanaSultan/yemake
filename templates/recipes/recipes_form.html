@@ -1,0 +1,88 @@
+
+{% extends 'base.html' %} 
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href='{% static '/css/form.css' %}?{% now "U" %}'>
+{% endblock css %}
+{% block content %} 
+
+{% comment %} Blog yaratmaq ucun form {% endcomment %}
+
+<div class="form">
+    <div class="page">
+{% if page == "createblog" %}
+<h1>Blog yaz</h1>
+<form
+  action="{% url 'createblog'  %}"
+  method="POST"
+  enctype="multipart/form-data"
+>
+  {% csrf_token %} {{form.as_p}}
+
+  <div class="submit"><input type="submit" value="Blog Paylaş" /></div>
+</form>
+
+
+{% comment %} Resept update etmek ucun form {% endcomment %}
+
+
+{% elif page == "update" %}
+<h1>Reseptə Düzəliş et</h1>
+<form method="POST" enctype="multipart/form-data">
+  {% csrf_token %} {{form.as_p}}
+
+  <div class="submit"><input type="submit" value="Dəyişikliyi yadda saxla" /></div>
+</form>
+
+
+{% comment %} Blog update etmek ucun {% endcomment %}
+
+
+{% elif page == "updateblog" %}
+<h1>Bloga düzəliş et</h1>
+<form  method="POST" enctype="multipart/form-data">
+  {% csrf_token %} 
+
+  {{form.as_p}}
+
+  <div class="submit"><input type="submit" value="Dəyişikliyi yadda saxla" /></div>
+</form>
+
+
+{% comment %} Resept silmək üçün form {% endcomment %}
+
+
+{% elif page == "delete" %}
+<h1 class="danger">Diqqət!</h1>
+<form method="POST" enctype="multipart/form-data">
+  {% csrf_token %} 
+  <h2>Bu postu silmək istədiyinizdən əminsiniz?</h2>
+  <div class="submit"><a href="{% url 'index' %}" class="btn">Ana Səhifəyə Qayıt</a> <input type="submit" value="Sil" /></div>
+</form>
+
+{% elif page == "deleteBlog" %}
+<h1 class="danger">Diqqət!</h1>
+<form method="POST" enctype="multipart/form-data">
+  {% csrf_token %} 
+  <h2>Bu postu silmək istədiyinizdən əminsiniz?</h2>
+  <div class="submit"> <input type="submit" value="Sil" /></div>
+</form>
+
+
+{% comment %} Resept yaratmaq ucun form {% endcomment %}
+
+
+{% else %}
+<h1>Resept Yaz</h1>
+<form
+  action="{% url 'blogcreate'  %}"
+  method="POST"
+  enctype="multipart/form-data"
+>
+  {% csrf_token %} {{form.as_p}}
+
+  <div class="submit"> <input type="submit" value="Resepti Paylaş" /></div>
+</form>
+{% endif %} 
+</div></div>
+{% endblock content %}

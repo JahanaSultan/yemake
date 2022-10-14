@@ -1,0 +1,107 @@
+.realtive img{
+  top: -50%;
+  left: 50%;
+  transform: translate(-50% 50%);
+border: 5px solid red!important;
+}
+
+.profile .top-profile .cover {
+  height: 300px;
+  width: 100%;
+  border: 3px solid var(--water-green);
+}
+
+.profile .top-profile .profile-img {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+  top: -100px;
+}
+
+.profile .top-profile .profile-img img {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  border: 3px solid var(--water-green);
+}
+.profile .top-profile .profile-img h1 {
+  margin: 10px 0;
+}
+
+.profile .top-profile .profile-img .follow {
+  padding: 20px;
+  background-color: #f1f1f1;
+  margin-top: 20px;
+  display: flex;
+  border-radius: 20px;
+  border: 1px solid #7f7f7f;
+}
+.profile .top-profile .profile-img .follow .box {
+  text-align: center;
+  margin: 0 10px;
+  cursor: pointer;
+}
+.profile .top-profile .profile-img h1 {
+  font-weight: 900;
+}
+.profile .top-profile .profile-img .username {
+  margin-bottom: 20px;
+  color: var(--water-green);
+  font-style: italic;
+}
+.profile .bottom-profile .top-buttons {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  border-bottom: 3px solid var(--water-green);
+  padding-bottom: 10px;
+}
+.profile .bottom-profile .top-buttons button {
+  border: 3px solid transparent;
+  background-color: transparent;
+  font-size: 20px;
+  margin: 0 20px;
+  transition: 0.3s ease;
+}
+.profile .bottom-profile .top-buttons button:hover {
+  color: var(--carrot);
+}
+.profile .bottom-profile .empty {
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.underline-div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 10px;
+  border-bottom: 2px solid var(--water-green);
+  margin-bottom: 30px;
+}
+
+button {
+  width: 210px;
+  height: 40px;
+  border: 1px solid var(--yellow);
+  color: var(--yellow);
+  background-color: transparent;
+  font-size: 18px;
+  transition: 0.7s ease;
+}
+button i{
+  color:  var(--yellow);
+  transition: 0.1s;
+}
+button:hover {
+  background-color: var(--yellow);
+  color: #FFF;
+}
+button:hover i{
+  color: #fff;
+}

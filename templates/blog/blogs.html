@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href='{% static '/css/index.css' %}?{% now "U" %}'>
+{% endblock  %}
+{% block title %}<title>Blogs</title>{% endblock  %}
+
+
+{% block content %}
+
+<h3 class="title">Bloglar</h3>
+<div class="cards padding-x">
+{% for blog in blog %}
+<div class="card">
+{% include 'partials/__blogcard.html' %}</div>
+{% endfor %}
+</div>
+
+{% include "partials/__paginations.html" %}
+{% endblock  %}

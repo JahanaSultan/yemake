@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+
+<link rel="stylesheet" href='{% static '/css/login.css' %}?{% now "U" %}'>
+
+{% endblock css %}
+
+{% block title %}<title>Giriş Et</title>{% endblock  %}
+{% block content %}
+
+<!----- QEYDIYYATDAN KEÇ SƏHİFƏSİ ----->
+
+{% if page == 'signup' %}
+<div class="container">
+  <div class="formBx">
+    <form method='POST' action="{% url 'signup' %}">
+      {% csrf_token %}
+      <h2>Qeydiyyatdan Keç</h2>
+      {% for field in form %}
+      <label for="formInput#text">{{field.label}}</label>
+      {{field}}
+
+      {% comment %} {% if field.help_text %}
+      <small>{{field.help_text}}</small><br>
+      {% endif %} {% endcomment %}
+
+
+      {% for error in field.errors %}
+      <p class="error">{{error}}</p>
+      {% endfor %}
+      {% endfor %}
+      <br>
+      <input type="submit" value="Qeydiyyat" />
+      <p class="signup">
+        Hesabın var mı? <a href="{% url 'signin' %}">Giriş Et</a>
+      </p>
+    </form>
+  </div>
+  <div class="imgBx">
+    <img src="{% static 'image/signup.jpeg' %}" alt="" />
+  </div>
+</div>
+
+{% else %}
+
+{% comment %} GİRİŞ ET SƏHİFƏSİ {% endcomment %}
+
+<section>
+  <div class="container">
+    <div class="imgBx">
+      <img src="{% static 'image/login.jpeg' %}" alt="" />
+    </div>
+    <div class="formBx">
+      <form action="" method="POST">
+        {% csrf_token %}
+        <h2>Giriş Et</h2>
+        {% if messages %}
+        <ul class="messages">
+          {% for message in messages %}
+          <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+          {% endfor %}
+        </ul>
+        {% endif %}
+        <input type="text" placeholder="İstifadəçi Adı" name="username" />
+        <input type="password" placeholder="Şifrə" name="password" />
+        <div class="card-footer">
+        <input type="submit" value="Giriş Et" />
+        <a href="{% url 'reset_password' %}">Şifrəni Unutdun?</a>
+       </div>
+        <p class="signup">
+          Hesabın yoxdur? <a href="{% url 'signup' %}">Qeydiyyatdan Keç</a>
+        </p>
+      </form>
+    </div>
+
+  </div>
+</section>
+{% endif %}
+
+{% endblock content %}
