@@ -21,10 +21,9 @@ img {
   justify-content: space-between;
   align-items: center;
   padding: 5px;
-  border: 1px solid var(--water-green);
   margin-top: 10px;
   margin-bottom: 20px;
-  /* background-color: var(--water-green); */
+  background-color: var(--light-green);
   /* border-radius: 20px; */
 }
 .comment-write{
@@ -39,9 +38,13 @@ img {
 .owner p {
   font-size: 12px;
 }
+.owner h4{
+  font-size: 20px;
+  font-weight: 900;
+}
 .owner p:first-of-type {
   font-style: italic;
-  color: var(--yellow) !important;
+  color: #fff !important;
 }
 
 .owner .profile-img {
@@ -69,11 +72,13 @@ img {
 .other-posts {
   width: 28%;
   margin-top: 20px;
+  
 }
 .detail {
   display: flex;
   width: 100%;
   margin-top: 10px;
+  background-color: var(--light-green);
 }
 .detail .top {
   width: 25%;
@@ -81,27 +86,21 @@ img {
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
+  border: 2px solid #fff;
+  border-radius: 5px;
+  margin: 2px;
+  color: #fff;
 }
-.detail .top:last-child {
-  border-right: 1px solid var(--water-green);
-  border-radius: 0 20px 20px 0;
-}
-.detail .top:first-child {
-  border-radius: 20px 0 0 20px;
-}
-.detail .top {
-  border-top: 1px solid var(--water-green);
-  border-bottom: 1px solid var(--water-green);
-  border-left: 1px solid var(--water-green);
-  display: flex;
+.detail .top i{
+  font-size: 20px;
+  margin-right: 5px;
+  cursor: pointer;
+  color: var(--yellow);
 }
 .content{
     margin: 20px 0;
 }
-/* .content p{
-    font-family: 'Poppins', sans-serif;
-} */
+
 .content h1{
     color: var(--yellow);
     font-weight: 700;
@@ -139,10 +138,7 @@ input[type="submit"]{
   margin-bottom: 20px;
   margin-top: 20px;
 }
-.comment{
-  display: flex;
-  align-items: center;
-}
+
 .comment img{
   width: 60px;
   height: 60px;

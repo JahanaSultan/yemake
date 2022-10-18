@@ -103,7 +103,7 @@ class RecipeBook(models.Model):
     recipe=models.ForeignKey(Blog, on_delete=models.CASCADE, null=True)
 
     def __str__(self):
-        return self.recipe.title
+        return str(self.recipe.owner)
     class Meta:
         unique_together=[["owner", "recipe"]]
     

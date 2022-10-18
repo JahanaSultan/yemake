@@ -19,14 +19,12 @@
 
     <div class="detail">
         <div class="category top">
-            <div class="vote-value">
             <i class="fa-regular fa-thumbs-up"></i>
-            {{upvote | length}}</div>
+            ({{upvote | length}})
 
         </div>
-        <div class="comments top"><i class="fa-regular fa-comment"></i>{{review | length}} Şərh</div>
-        <div class="recipe-book top"> <p><i class="fa-solid fa-book"></i>
-            resept kitabında</p>
+        <div class="comments top"><i class="fa-regular fa-comment"></i>({{review | length}})</div>
+        <div class="recipe-book top"> <i class="fa-solid fa-book"></i>({{book}})
            </div>
         <div class="time top"><i class="fa-regular fa-clock"></i> {{blog.cook_time}} {{blog.time}}</div>
     </div>
@@ -73,18 +71,18 @@
 
 
 <div class="other-posts">
-    <div class="owner">
+   
+   <a href=" {% if blog.owner.id == user.profile.id %} {% url 'profile' user.profile.slug %} {% else %} {% url 'Account' blog.owner.slug %} {% endif %}"> 
+     <div class="owner">
         <div class="profile-img">
             <img src="{{blog.owner.profile_image.url}}" alt="">
             <div class="name">
                 <h4>{{blog.owner.name}}</h4>
                 <p>@{{blog.owner.username}}</p>
-                <p>1256 izləyici</p> <button class="follow">İzlə</button>
             </div>
         </div>
-       
-    </div>
-
+      </div>
+    </a>
 
     <h3 class="title">Digər postlar</h3>
 {% for blog in blogs %}

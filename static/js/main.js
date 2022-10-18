@@ -82,5 +82,9 @@ run()
 
 
 
+// LOADING GIF HIDE AFTER 1 SECOND
 
+setTimeout(() => {
+    document.querySelector(".loader").classList.add("hide")
+}, "1000")
 

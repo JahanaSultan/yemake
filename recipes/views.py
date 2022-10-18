@@ -15,26 +15,30 @@ from django.db.models import Count
 # Create your views here.
 
 def index(request):
-    blogs=Blog.objects.all().annotate(num=Count("recipebook")).order_by("-num")
-    wrts=Blg.objects.filter(inSlide=True).order_by("-created")
-    video=Blog.objects.filter(youtube_link__isnull=False)
-    diet=Blog.objects.filter(category__title='Diet')
-    time=Blog.objects.filter(Q(cook_time__lte=15) & Q(time="dəqiqə"))
+    blogs=Blog.objects.all().annotate(num=Count("recipebook")).order_by("-num")[0:15]
+    wrts=Blg.objects.filter(inSlide=True).order_by("-created")[0:15]
+    video=Blog.objects.filter(youtube_link__isnull=False)[0:15]
+    diet=Blog.objects.filter(category__title='Diet')[0:15]
+    time=Blog.objects.filter(Q(cook_time__lte=15) & Q(time="dəqiqə"))[0:15]
     categories= Category.objects.all().order_by('title').order_by("title")
     context = {
-        "blog": blogs[0:15],
+        "blog": blogs,
         "category":categories,
-        "like":video[0:15],
-        "diet":diet[0:15],
-        "wrts":wrts[0:15],
-        "time":time[0:15],
+        "like":video,
+        "diet":diet,
+        "wrts":wrts,
+        "time":time,
     }
     return render(request, "index.html", context)
 
 
 def category_filter(request, slug):
     category=Blog.objects.filter(category__slug=slug)
-    blogs, custom_range=Paginations(request, category)
+    if category:
+        blogs, custom_range=Paginations(request, category)
+    else:
+        blogs=""
+        custom_range=""
     context={
         "blog":blogs,
         "custom_range":custom_range
@@ -46,7 +50,11 @@ def category_filter(request, slug):
 def Recipes(request):
    
     blogs, search_query=searchRecipe(request)
-    blogs, custom_range=Paginations(request, blogs)
+    if blogs:
+        blogs, custom_range=Paginations(request, blogs)
+    else:
+        blogs=""
+        custom_range=""
     context = {
         "blog": blogs,
         "search_query":search_query,
@@ -68,6 +76,7 @@ def details(request, slug):
     reviews=Review.objects.filter(recipe=blog)
     upvote=Vote.objects.filter(Q(recipe=blog) & Q(value="up"))
     downvote=Vote.objects.filter(Q(recipe=blog) & Q(value="down"))
+    book=RecipeBook.objects.filter(recipe__slug=slug).count()
 
     if request.method == "POST":
         form=ReviewForm(request.POST)
@@ -89,7 +98,8 @@ def details(request, slug):
         "review":reviews,
         "upvote":upvote,
         "downvote":downvote,
-        "form":form
+        "form":form,
+        "book":book
   
     }
     return render(request, "recipes/recipe_details.html", context)

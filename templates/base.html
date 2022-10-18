@@ -8,7 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="author" content="Jahana Sultan" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" href="{% static 'image/logo4.png' %}">
+    <link rel="icon" href="">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
         integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -23,15 +23,18 @@
     {% block title %}<title>Ana Səhifə</title>{% endblock  %}
 </head>
 
+<!-- LOADING GIF -->
+
+<div class="loader">
+    <img src="{% static 'image/loader.gif' %}" alt="">
+    {% comment %} <h2>Food Loading</h2> {% endcomment %}
+</div>
 <body class="bg">
     <!---------------Navigation--------------->
     <nav class="padding-x">
             <div class="logo">
         <a href="{% url 'index' %}">
-            {% comment %} J<span>ust</span>
-            R<span>ight</span>
-            E<span>at</span> {% endcomment %}
-            <img src="{% static 'image/logo4.png' %}" alt="">
+          YeMake.com
         </a>
     </div>
         <div class="hamburger">

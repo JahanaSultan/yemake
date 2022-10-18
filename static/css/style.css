@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap");
-/* Color Schemes */
+@import url('https://fonts.googleapis.com/css2?family=Fredericka+the+Great&display=swap');
 
 @font-face {
   font-family: "FuturaPT";
@@ -10,11 +10,11 @@
 
 :root {
   --dark-green: #0c3b2e;
-  --light-green: #6d9763; /*yazilarin rengi*/
+  --light-green: #65A43D; /*yazilarin rengi*/
   --water-green: #bb8a72;
   --grass-green: #0c3b2e; /*for interface*/
   --brokolli-green: #008c3f;
-  --carrot: #6d9763;
+  --carrot: #65A43D;
   --yellow: #ffba00;
 }
 
@@ -48,6 +48,26 @@ img {
 ::selection {
   background-color: var(--dark-green);
   color: #fff;
+}
+
+.loader{
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+  z-index: 10000;
+  flex-direction: column;
+}
+.loader img{
+  width: 200px;
+  height: 200px;
+}
+
+.hide{
+  display: none;
 }
 
 .padding-x {
@@ -137,12 +157,11 @@ nav {
 }
 .logo a {
   text-decoration: none;
-  font-size: 40px;
-  font-weight: 700;
+  font-size: 30px;
+  font-weight: 900;
   color: var(--light-green);
-  transition: 0.3s ease all;
   display: block;
-  height: 70px;
+  font-family: 'Fredericka the Great', cursive;
 }
 
 .logo img {

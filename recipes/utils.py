@@ -15,7 +15,7 @@ def searchRecipe(request):
 
 def Paginations(request, blogs):
     page=request.GET.get("page")
-    results=18
+    results=30
     paginator=Paginator(blogs, results)
     try:
         blogs=paginator.page(page)
@@ -26,12 +26,12 @@ def Paginations(request, blogs):
         page=paginator.num_pages
         blogs=paginator.page(page)
 
-    leftIndex=(int(page)-4)
+    leftIndex=(int(page)-2)
 
     if leftIndex<1:
         leftIndex=1
 
-    rightIndex=(int(page)+5)
+    rightIndex=(int(page)+3)
 
     if rightIndex>paginator.num_pages:
         rightIndex=paginator.num_pages+1

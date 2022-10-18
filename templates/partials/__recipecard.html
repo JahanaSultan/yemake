@@ -38,13 +38,12 @@
         </a>
     </div>
   
-  {% if blog.owner.id == user.profile.id %}
-  <a href="{% url 'profile' user.profile.slug %}" class="profile">
+ 
+  <a href="{% if blog.owner.id == user.profile.id %} {% url 'profile' user.profile.slug %} {% else %} {% url 'Account' blog.owner.slug %} {% endif %}" class="profile">
     <div class="profile">
         <div class="profile-photo">
             {% if blog.owner.profile_image %}
             <img src="{{blog.owner.profile_image.url}}" alt="">
-          
             {% endif %}</div>
         <div class="name-date">
             <p class="name">{{blog.owner.name}}</p>
@@ -52,20 +51,6 @@
         </div>
     </div>
 </a>
-{% else %}
-<a href="{% url 'Account' blog.owner.slug %}" class="profile">
-    <div class="profile">
-        <div class="profile-photo">
-            {% if blog.owner.profile_image %}
-            <img src="{{blog.owner.profile_image.url}}" alt="">
-          
-            {% endif %}</div>
-        <div class="name-date">
-            <p class="name">{{blog.owner.name}}</p>
-            <p class="date">{{blog.created}}</p>
-        </div>
-    </div>
-</a>
-  {% endif %}
+
   
 </div>

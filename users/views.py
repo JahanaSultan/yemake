@@ -9,7 +9,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.contrib.auth import login, authenticate, logout
 from .forms import CustomUserCreationForm, ProfileForm
-
+from django.db.models import Count
 # Create your views here.
 
 
@@ -20,14 +20,17 @@ def myprofile(request, slug):
     page='profile'
     recipes=Blog.objects.filter(owner__username=profile.username).order_by("-created")
     blogs=Blg.objects.filter(owner__username=profile.username).order_by("-created")
-   
     book=profile.recipebook_set.all() 
+    review=profile.review_set.count()
+    
     context={
         "profile":profile,
         "recipes":recipes,
         "blogs":blogs,
         "page":page,
-        "book":book
+        "book":book,
+        "review":review,
+   
     }
     return render(request, 'users/user_profile.html',context)
 
@@ -89,9 +92,17 @@ def signup(request):
 def userAccount(request, slug):
     page='Account'
     profile=Profile.objects.get(slug=slug)
+    user_recipes=Blog.objects.filter(owner__slug=profile.slug).order_by("-created")
+    user_blogs=Blg.objects.filter(owner__username=profile.username).order_by("-created")
+    user_book=profile.recipebook_set.all() 
+    user_review=profile.review_set.count()
     context={
         "profil":profile,
-        "page": page
+        "page": page,
+        "user_recipes":user_recipes,
+        "user_blogs":user_blogs,
+        "user_book":user_book,
+        "user_review":user_review
     }
     return render(request, "users/user_profile.html", context )
     
