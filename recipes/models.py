@@ -12,6 +12,7 @@ class Category(models.Model):
     image=models.ImageField(null=True,upload_to='Category')
     slug=models.SlugField(editable=False, verbose_name="Slug", null=True, unique=True)
 
+
     
     def __str__(self):
         return self.title
