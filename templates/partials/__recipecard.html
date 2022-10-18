@@ -12,10 +12,11 @@
     {% endif %}
    
     <div class="img">
+
         {% if blog.youtube_link %}
          <div class="play"><i class="fa-solid fa-play"></i></div>
-
         {% endif %}
+
          
         <img src="{{blog.image.url}}" alt="">
         <div class="heart">
@@ -30,6 +31,10 @@
             <p>{{blog.category.title}}</p>
         </div></a>
         <div class="time-cook"><i class="fa-regular fa-clock"></i> {{blog.cook_time}} {{blog.time}}</div>
+        {% if blog.isActive %}
+        {% else %}
+        <div class="time-cook pending"><i class="fa-regular fa-clock"></i> Gözləmədədir</div>
+        {% endif %}
         <div class="stars"><i class="fa-solid fa-thumbs-up"></i>{{blog.vote_set.all | length }}</div>
         <div class="comment"><i class="fa-solid fa-comment"></i>{{blog.review_set.all | length}}</div>
     </div>

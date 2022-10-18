@@ -35,7 +35,7 @@
             <div class="w-full lg:w-3/12 px-4 lg:order-2 flex justify-center">
               <div class="relative w-full h-full profile-image">
                 <img alt="..." src="{{profile.profile_image.url}}" class=" shadow-xl rounded-full border-none  w-44 h-44 absolute  -top-1/2 left-1/2  -translate-x-1/2  " >
-              {% comment %} <form action="" method="POST"><i class="fa-regular fa-pen-to-square"></i></form> {% endcomment %}
+              
               </div>
             </div>
             <div class="w-full lg:w-4/12 px-4 lg:order-3 lg:text-right lg:self-center">
@@ -203,9 +203,10 @@
                 {% if user_recipes %}
                
                     {% for blog in user_recipes %}
+                    {% if blog.isActive %}
                     <div class="card">
                     {% include "partials/__recipecard.html" %}
-                </div>
+                </div> {% endif %}
                     {% endfor %}
                 {% else %}
                 <h2 class="text-3xl text-center w-full p-7">Ups... Resept paylaşmayıb 😒</h2>
@@ -219,9 +220,11 @@
             <div class="cards">
                 {% if user_blogs %}
                 {% for blog in user_blogs %}
+                {% if blog.isActive %}
                 <div class="card">
                     {% include "partials/__blogcard.html" %}
                 </div>
+                {% endif %}
                 {% endfor %}
                 {% else %}
                 <h2 class="text-3xl text-center w-full p-7">Ups... Blog paylaşmayıb 😯</h2>
