@@ -26,6 +26,11 @@ img {
   background-color: var(--light-green);
   /* border-radius: 20px; */
 }
+.comment{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 .comment-write{
   font-weight: 700;
   font-style: italic;

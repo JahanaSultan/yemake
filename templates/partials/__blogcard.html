@@ -1,4 +1,5 @@
 {% load static %}
+{% load hitcount_tags %}
 
 <div class="post-card">
     {% if blog.owner.id == user.profile.id %}
@@ -18,10 +19,10 @@
             <p>{{blog.category}}</p>
         </div>
         
-        <div class="stars"><i class="fa-regular fa-eye"></i> 5</div>
+        <div class="stars"><i class="fa-regular fa-eye"></i> {% get_hit_count for blog %}</div>
     </div>
     <div class="title">
-        <h4>{{blog.title | truncatechars:40}}</h4>
+        <a href="{% url 'blogdetail' blog.slug %}"><h4>{{blog.title | truncatechars:40}}</h4></a>
     </div>
     {% if blog.owner.id == user.profile.id %}
     <a href="{% url 'profile' user.profile.slug %}" class="profile">

@@ -43,6 +43,10 @@
 
 
 <div class="comments">{% if request.user.is_authenticated %}
+{% if blog.review_set.all %}
+<h1>Siz artıq şərh əlavə etmisiniz (<a href="">Düzəliş et</a>)</h1>
+
+{% else %}
 <h1 class="add-comment">Şərh Əlavə Edin</h1>
 
 <!-----COMMENT FORM----->
@@ -53,6 +57,8 @@
         <img src="{{user.profile.profile_image.url}}" alt="">
 <div class="submit-btn">{{form}}<input type="submit" value="Əlavə Et"></div></div>
 </form>
+{% endif %}
+
 {% else %}
 <!--x--COMMENT FORM--x-->
 

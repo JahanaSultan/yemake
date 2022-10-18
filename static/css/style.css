@@ -383,6 +383,10 @@ hr {
   margin-bottom: 0px !important;
   text-align: center;
 }
+.copyright p span{
+  color: var(--light-green);
+  font-size: 25px;
+}
 .searchbar {
   width: 300px;
   padding: 10px;

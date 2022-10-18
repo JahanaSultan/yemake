@@ -4,6 +4,8 @@ from django.contrib.auth.decorators import login_required
 from .forms import BlogForm
 from django.db.models import Q
 from .utils import Paginations
+from hitcount.utils import get_hitcount_model
+from hitcount.views import HitCountMixin
 # Create your views here.
 
 
@@ -16,14 +18,28 @@ def blog(request):
     }
     return render(request, 'blog/blogs.html',context)
 
+
+
 def details(request, slug):
+    object = get_object_or_404(Blog, slug=slug)
     blog = Blog.objects.get(slug=slug)
     blogs= Blog.objects.filter(category=blog.category).filter(~Q(id=blog.id))
     context = {
         "blog" : blog,
         "blogs" : blogs
     }
+    hit_count = get_hitcount_model().objects.get_for_object(object)
+    hits = hit_count.hits
+    hitcontext = context['hitcount'] = {'pk': hit_count.pk}
+    hit_count_response = HitCountMixin.hit_count(request, hit_count)
+    if hit_count_response.hit_counted:
+        hits = hits + 1
+        hitcontext['hit_counted'] = hit_count_response.hit_counted
+        hitcontext['hit_message'] = hit_count_response.hit_message
+        hitcontext['total_hits'] = hits
     return render(request, "blog/blog_details.html", context)
+
+    
 
 
 @login_required(login_url="signin")

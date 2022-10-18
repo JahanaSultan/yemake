@@ -15,8 +15,8 @@ from django.db.models import Count
 # Create your views here.
 
 def index(request):
-    blogs=Blog.objects.all().annotate(num=Count("recipebook")).order_by("-num")[0:15]
-    wrts=Blg.objects.filter(inSlide=True).order_by("-created")[0:15]
+    blogs=Blog.objects.filter(Q(isActive=True)).annotate(num=Count("recipebook")).order_by("-num")[0:15]
+    wrts=Blg.objects.filter(Q(inSlide=True) & Q(isActive=True)).order_by("-created")[0:15]
     video=Blog.objects.filter(youtube_link__isnull=False)[0:15]
     diet=Blog.objects.filter(category__title='Diet')[0:15]
     time=Blog.objects.filter(Q(cook_time__lte=15) & Q(time="dəqiqə"))[0:15]

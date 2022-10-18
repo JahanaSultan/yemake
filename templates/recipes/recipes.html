@@ -13,9 +13,12 @@
 <div class="cards padding-x">
 {% if blog %}
  {% for blog in blog  %}
+ {% if blog.isActive %}
+
      <div class="card">
     {% include 'partials/__recipecard.html' %}
-    </div>
+    </div> 
+ {% endif %}
     {% endfor %}
 {% else %}
 <div class="notfound">

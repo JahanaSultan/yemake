@@ -42,7 +42,7 @@ class Blog(models.Model):
     title = models.CharField(verbose_name="Başlıq",max_length=1500)
     description = models.TextField(verbose_name="Açıqlama")
     image=models.ImageField(verbose_name="Şəkil",null=True, blank=True, default='Recipes/default.jpg', upload_to='Recipes')
-    isActive=models.BooleanField(verbose_name="Aktivlik",default=True)
+    isActive=models.BooleanField(verbose_name="Aktivlik",default=False)
     category= models.ForeignKey(Category,verbose_name="Kateqoriya", on_delete=models.CASCADE)
     slug=models.SlugField(editable=False, verbose_name="Slug", null=True, unique=True)
     cook_time=models.IntegerField(verbose_name="Bişirilmə Vaxtı",null=True)
@@ -81,6 +81,7 @@ class Review(models.Model):
         return self.body
     class Meta:
         ordering=["-created"]
+        unique_together=[["owner", "recipe"]]
 
 class Vote(models.Model):
     VOTE_TYPE=(
