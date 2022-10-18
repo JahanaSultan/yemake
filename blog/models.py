@@ -5,7 +5,7 @@ from django.utils.crypto import get_random_string
 from users.models import Profile
 from hitcount.models import HitCountMixin, HitCount
 from django.contrib.contenttypes.fields import GenericRelation
-from ckeditor.fields import RichTextField
+from django_quill.fields import QuillField
 
 
 class Category(models.Model):
@@ -16,7 +16,7 @@ class Category(models.Model):
 
 class Blog(models.Model):
     title=models.CharField(max_length=250)
-    description=RichTextField()
+    description=QuillField()
     image= image=models.ImageField(default='Blog/default.png', upload_to='Blog', null=True)
     isActive=models.BooleanField(default=False)
     inSlide=models.BooleanField(default=False)
