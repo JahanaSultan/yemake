@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'embed_video',
+    'ckeditor',
     'hitcount',
     'blog.apps.BlogConfig',
     'users.apps.UsersConfig',

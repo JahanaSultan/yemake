@@ -85,6 +85,7 @@
 >
   {% csrf_token %} 
   <img id="preview" alt="Blog Image" src="{% static 'image/default.jpg' %}" />
+  {{form.media}}
   {{form.as_p}}
 
   <div class="submit"> <input type="submit" value="Resepti Paylaş" /></div>

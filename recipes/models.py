@@ -5,6 +5,7 @@ from recipes.helper import seo
 from django.utils.crypto import get_random_string
 from users.models import Profile
 from embed_video.fields  import  EmbedVideoField
+from ckeditor.fields import RichTextField
 
 
 # Create your models here.
@@ -40,7 +41,7 @@ class Blog(models.Model):
        
     ]
     title = models.CharField(verbose_name="Başlıq",max_length=1500)
-    description = models.TextField(verbose_name="Açıqlama")
+    description = RichTextField(verbose_name="Açıqlama")
     image=models.ImageField(verbose_name="Şəkil",null=True, blank=True, default='Recipes/default.jpg', upload_to='Recipes')
     isActive=models.BooleanField(verbose_name="Aktivlik",default=False)
     category= models.ForeignKey(Category,verbose_name="Kateqoriya", on_delete=models.CASCADE)
@@ -73,7 +74,7 @@ class Blog(models.Model):
 class Review(models.Model):
     owner=models.ForeignKey(Profile, on_delete=models.CASCADE, null=True)
     recipe = models.ForeignKey(Blog ,on_delete=models.CASCADE)
-    body=models.TextField(null=True,blank=False)
+    body=RichTextField(null=True,blank=False)
     created=models.DateTimeField(auto_now_add=True)
     
     
