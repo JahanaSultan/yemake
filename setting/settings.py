@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'embed_video',
     'django_quill',
     'hitcount',
+    'main.apps.MainConfig',
     'blog.apps.BlogConfig',
     'users.apps.UsersConfig',
     'recipes.apps.RecipesConfig',
@@ -126,6 +127,7 @@ USE_TZ = True
 
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 EMAIL_HOST ='smtp.mail.ru'
 EMAIL_PORT = 2525
 EMAIL_USE_TLS  = True

@@ -100,15 +100,3 @@
 
 {% endblock  %}
 
-{% block js %}
-
-
-  
-<script>
-    {% for message in messages %}
-    alertify.set('notifier','position', 'bottom-right');
-    alertify.{{message.tags}}('{{message}}');
-    {% endfor %}
-</script>
-
-{% endblock js %}

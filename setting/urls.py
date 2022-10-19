@@ -21,10 +21,12 @@ from django.conf.urls.static import static
 from django.contrib.auth import views as auth_views
 
 urlpatterns = [
+    
     path('admin/', admin.site.urls),
     path('', include('users.urls')),
     path('', include('recipes.urls')),
     path('', include('blog.urls')),
+    path('',include('main.urls')),
 
     #Reset Password
 

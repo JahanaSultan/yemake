@@ -6,4 +6,5 @@
 
 {% block content %}
 <h1>{{blog.title}}</h1>
+<div>{{blog.description.html|safe}}</div>
 {% endblock content %}

@@ -7,29 +7,11 @@ from .utils import searchRecipe, Paginations
 from django.db.models import Q
 from django.contrib import messages
 
-from django.db.models import Count
 
 
 
 
 # Create your views here.
-
-def index(request):
-    blogs=Blog.objects.filter(Q(isActive=True)).annotate(num=Count("recipebook")).order_by("-num")[0:15]
-    wrts=Blg.objects.filter(Q(inSlide=True) & Q(isActive=True)).order_by("-created")[0:15]
-    video=Blog.objects.filter(youtube_link__isnull=False)[0:15]
-    diet=Blog.objects.filter(category__title='Diet')[0:15]
-    time=Blog.objects.filter(Q(cook_time__lte=15) & Q(time="dəqiqə"))[0:15]
-    categories= Category.objects.all().order_by('title').order_by("title")
-    context = {
-        "blog": blogs,
-        "category":categories,
-        "like":video,
-        "diet":diet,
-        "wrts":wrts,
-        "time":time,
-    }
-    return render(request, "index.html", context)
 
 
 def category_filter(request, slug):
@@ -167,13 +149,3 @@ def deleteRecipe(request, pk):
     }
     return render(request, "recipes/recipes_form.html", context)
 
-
-
-
-
-
-def aboutus(request):
-    return render(request, 'about-us.html')
-
-def contact(request):
-    return render(request, 'contact.html')

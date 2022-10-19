@@ -15,7 +15,10 @@ img {
   height: 500px;
   border-radius: 20px;
 }
-
+.content li{
+  list-style-type:circle!important;
+  color: var(--light-green);
+}
 .owner {
   display: flex;
   justify-content: space-between;

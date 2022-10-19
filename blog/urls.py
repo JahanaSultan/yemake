@@ -1,4 +1,4 @@
-from django.urls import path, include
+from django.urls import path
 from . import views
 
 
@@ -8,5 +8,4 @@ urlpatterns=[
    path('blog-details/<slug:slug>', views.details, name="blogdetail"),
    path('update-blog/<str:pk>/', views.updateBlog, name="updateblog"),
    path('delete-blog/<str:pk>/', views.deleteBlog, name="deleteBlog"),
-   
 ]
