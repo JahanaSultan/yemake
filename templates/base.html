@@ -107,11 +107,12 @@
                 <a href="#"><i class="fab fa-youtube"></i></a>
             </div>
             <div class="input">
-                <div class="subscribe">
+                <form class="subscribe" action="{% url 'subscribe' %}" method="POST">
+                    {% csrf_token %}
                     <h5>Her hafta yeni tarifler emailinize gelsin:</h5>
-                    <input type="email" placeholder="Email">
+                    <input type="email" placeholder="Email" name="email">
                     <button>Abone Ol</button>
-                </div>
+                </form>
                 <div class="search">
                     <h5>Axtarmaq istədiyiniz kəliməni yazın:</h5>
                     <form action="{% url 'recipes' %}" method="get" id="searchForm">

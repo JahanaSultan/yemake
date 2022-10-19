@@ -81,6 +81,9 @@ img {
 .ajs-message{
   background-color: var(--light-green)!important;
 }
+.ajs-message.ajs-error{
+  background-color: red!important;
+}
 
 h3.title {
   background-color: var(--carrot);

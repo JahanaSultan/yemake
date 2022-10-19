@@ -1,4 +1,5 @@
 from django import forms
+from django_quill.widgets import QuillWidget
 
 # Create your forms here.
 
@@ -13,4 +14,10 @@ class ContactForm(forms.Form):
 	last_name.widget.attrs.update({'class': 'contact-input'})
 	email_address.widget.attrs.update({'class': 'contact-input'})
 	message.widget.attrs.update({'class': 'contact-input h-52 outline-none'})
+
+
+class NewsletterForm(forms.Form):
+    subject = forms.CharField()
+    receivers = forms.CharField()
+    message = forms.CharField(widget=forms.Textarea, label="Email content")
     

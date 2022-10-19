@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="content-section">
+        <form method="POST">
+            {% csrf_token %} 
+            {{ form.media  }}
+            {{ form.as_p|safe  }}
+           
+            <div class="form-group">
+                <button class="btn btn-outline-info" type="submit">Send</button>
+            </div>
+        </form>
+    </div>
+{% endblock content %}
