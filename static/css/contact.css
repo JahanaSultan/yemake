@@ -33,6 +33,9 @@
 .contact button{
   background-color: var(--yellow)!important;
 }
+.contact label{
+  color: var(--yellow);
+}
 @media screen and (max-width: 1024px){
   .contact{
     width: 80%;

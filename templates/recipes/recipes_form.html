@@ -17,8 +17,9 @@
   method="POST"
   enctype="multipart/form-data"
 >
-  {% csrf_token %} 
+  {% csrf_token %}   
   <img id="preview" alt="Blog Image" src="{% static 'image/default.png' %}" />
+ {{form.media}}
   {{form.as_p}}
 
   <div class="submit"><input type="submit" value="Blog Paylaş" /></div>
@@ -33,6 +34,7 @@
 <form method="POST" enctype="multipart/form-data">
   {% csrf_token %} 
   <img id="preview" alt="Blog Image" src="{% static 'image/default.jpg' %}" />
+  {{form.media}}
   {{form.as_p}}
 
   <div class="submit"><input type="submit" value="Dəyişikliyi yadda saxla" /></div>
@@ -48,6 +50,7 @@
   {% csrf_token %} 
   <img id="preview" alt="Blog Image" src="{% static 'image/default.png' %}" />
 
+  {{form.media}}
   {{form.as_p}}
 
   <div class="submit"><input type="submit" value="Dəyişikliyi yadda saxla" /></div>
@@ -103,13 +106,15 @@
 
 let preview=document.getElementById("preview")
 let file_input=document.querySelector("input[type='file']")
-let link=document.querySelector("form a")
+let link=document.querySelector("form p a")
 
 file_input.addEventListener("change",()=>{
+  preview.style.display="inline-block"
   preview.src=window.URL.createObjectURL(file_input.files[0])
 })
 
-if(link){
+if(link.href){
+  preview.style.display="block"
   preview.src=link.href
 }
 

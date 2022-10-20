@@ -188,10 +188,11 @@ object-fit: cover;
   font-size: 10px;
 }
 
-.post-card .pending{
+.pending{
   top: 80px;
   color: #FFF;
   background-color: rgb(255, 0, 0);
+  z-index: 100;
 }
 
 .category-card {
@@ -256,6 +257,7 @@ object-fit: cover;
   border-radius: 0 20px 20px 0;
   display: none;
   text-align: left;
+  flex-direction: column;
 }
 .display{
   display: block;

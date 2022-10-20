@@ -1,61 +1,53 @@
-.realtive img{
-  top: -50%;
-  left: 50%;
-  transform: translate(-50% 50%);
-border: 5px solid red!important;
-}
-.profile-image .edit{
-  position: absolute;
-  width: 50px;
-  height: 50px;
-  cursor: pointer;
-}
-.profile .top-profile .cover {
-  height: 300px;
+.modal{
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
-  border: 3px solid var(--water-green);
-}
-
-.profile .top-profile .profile-img {
-  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.593);
+  z-index: 1000;
   display: flex;
   align-items: center;
-  flex-direction: column;
-  position: relative;
-  top: -100px;
+  justify-content: center;
+  display: none;
+  pointer-events:none;
 }
 
-.profile .top-profile .profile-img img {
-  width: 200px;
-  height: 200px;
-  border-radius: 50%;
-  border: 3px solid var(--water-green);
-}
-.profile .top-profile .profile-img h1 {
-  margin: 10px 0;
+.modal-image{
+width: 350px;
+height: 350px;
+background-color: #fff;
+position: relative;
 }
 
-.profile .top-profile .profile-img .follow {
-  padding: 20px;
-  background-color: #f1f1f1;
-  margin-top: 20px;
+.modal-image img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.modal-image .close i{
+  color: red;
+  font-size: 20px;
+}
+.modal-image .close{
+  position: absolute;
+  top: 0;
+  right: 0;
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
   display: flex;
-  border-radius: 20px;
-  border: 1px solid #7f7f7f;
+  justify-content: center;
+  align-items: center;
 }
-.profile .top-profile .profile-img .follow .box {
-  text-align: center;
-  margin: 0 10px;
+.display{
+  display: flex;
+}
+
+#profile-image{
   cursor: pointer;
 }
-.profile .top-profile .profile-img h1 {
-  font-weight: 900;
-}
-.profile .top-profile .profile-img .username {
-  margin-bottom: 20px;
-  color: var(--water-green);
-  font-style: italic;
-}
+
 .profile .bottom-profile .top-buttons {
   width: 100%;
   display: flex;
@@ -90,23 +82,14 @@ border: 5px solid red!important;
   margin-bottom: 30px;
 }
 
-button {
+.bottom-profile button {
   width: 210px;
   height: 40px;
-  border: 1px solid var(--yellow);
-  color: var(--yellow);
+  color: var(--water-green);
   background-color: transparent;
   font-size: 18px;
-  transition: 0.7s ease;
+  outline: none;
 }
 button i{
-  color:  var(--yellow);
-  transition: 0.1s;
-}
-button:hover {
-  background-color: var(--yellow);
-  color: #FFF;
-}
-button:hover i{
-  color: #fff;
+  color:  var(--water-green);
 }

@@ -11,8 +11,9 @@
 <h3 class="title">Bloglar</h3>
 <div class="cards padding-x">
 {% for blog in blog %}
+{% if blog.isActive %}
 <div class="card">
-{% include 'partials/__blogcard.html' %}</div>
+{% include 'partials/__blogcard.html' %}</div>{% endif %}
 {% endfor %}
 </div>
 

@@ -3,7 +3,6 @@
 
 {% block css %}
 <link rel="stylesheet" href='{% static '/css/output.css' %}?{% now "U" %}'>
-<link rel="stylesheet" href="https://demos.creative-tim.com/notus-js/assets/styles/tailwind.css">
 <link rel="stylesheet" href='{% static '/css/index.css' %}?{% now "U" %}'>
 <link rel="stylesheet" href='{% static '/css/user-profile.css' %}?{% now "U" %}'>
 
@@ -13,11 +12,17 @@
 {% block title %}<title>Profil</title>{% endblock title %}
 
 {% block content %}
+<div class="modal">
+  <div class="modal-image">
+  <img src="" alt="" id="modal-view">
+  <div class="close"><i class="fa-solid fa-xmark"></i></div>
+</div>
+</div>
 
 {% if page == "profile" %}
 
 <main class="profile-page">
-  <section class="relative block h-500-px">
+  <section class="relative block h-96">
     <div class="absolute top-0 w-full h-full bg-center bg-cover" style="
             background-image: url('{{profile.cover_image.url}}');
           ">
@@ -27,14 +32,14 @@
      
     </div>
   </section>
-  <section class="relative py-16 bg-slate-600">
+  <section class="relative py-16">
     <div class="container mx-auto px-4">
       <div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-xl rounded-lg -mt-64">
         <div class="px-6">
           <div class="flex flex-wrap justify-center">
             <div class="w-full lg:w-3/12 px-4 lg:order-2 flex justify-center">
               <div class="relative w-full h-full profile-image">
-                <img alt="..." src="{{profile.profile_image.url}}" class=" shadow-xl rounded-full border-none  w-44 h-44 absolute  -top-1/2 left-1/2  -translate-x-1/2  " >
+                <img alt="..." src="{{profile.profile_image.url}}" class=" shadow-xl rounded-full border-none  w-44 h-44 absolute  -top-1/2 left-1/2  -translate-x-1/2  " id="profile-image">
               
               </div>
             </div>
@@ -255,4 +260,27 @@
 {% endif %}
 
 {% endblock content %}
+
+{% block js %}
+<script>
+
+let image=document.getElementById("profile-image")
+let modal_image=document.getElementById("modal-view")
+let modal=document.querySelector(".modal")
+let close=document.querySelector(".close")
+image.addEventListener("click",()=>{
+  modal.classList.add("display")
+  modal_image.src=image.src
+  modal.style.pointerEvents="all"
+})
+const removeModal=()=>{
+  modal.classList.remove("display")
+  console.log("removed")
+}
+close.addEventListener("click",removeModal)
+modal.addEventListener("click",removeModal)
+
+</script>
+
+{% endblock js %}
 

@@ -1,10 +1,81 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
 {% load static %}
-
-{% block title %}<title>{{blog.title}}</title>{% endblock title %}
-
+{% block css %}
+<link rel="stylesheet" href='{% static '/css/recipe-details.css' %}?{% now "U" %}'>
+<link rel="stylesheet" href='{% static '/css/index.css' %}?{% now "U" %}'>
+{% endblock css %}
+{% block title %}<title>{{blog.title}}</title>{% endblock  %}
 
 {% block content %}
-<h1>{{blog.title}}</h1>
-<div>{{blog.description.html|safe}}</div>
-{% endblock content %}
+
+
+
+<h3 class="title">{{blog.title}} {{blog.id}}</h3>
+<div class="container  padding-x">
+    <div class="details">
+        <img src="{{blog.image.url}}" alt="">
+
+        <div class="content">
+            <h1>{{blog.title}}</h1>
+            <p>{{blog.description.html|safe}}</p>
+        </div>
+
+
+            {% comment %} <div class="comments">{% if request.user.is_authenticated %}
+                {% if blog.review_set.all %}
+                <h1>Siz artıq şərh əlavə etmisiniz (<a href="">Düzəliş et</a>)</h1>
+
+                {% else %}
+                <h1 class="add-comment">Şərh Əlavə Edin</h1>
+
+                <!-----COMMENT FORM----->
+
+                <form method="POST" id="UserCommentForm" action="">
+                    {% csrf_token %}
+                    <div class="comment">
+                        <img src="{{user.profile.profile_image.url}}" alt="">
+                        <div class="submit-btn">{{form}}<input type="submit" value="Əlavə Et"></div>
+                    </div>
+                </form>
+                {% endif %}
+
+                {% else %}
+                <!--x--COMMENT FORM--x-->
+
+                <a href="{% url 'signin' %}?next={{request.path}}">
+                    <h4 class="comment-write">Şərh yazmaq üçün Giriş Edin</h4>
+                </a>
+                {% endif %}
+                {% for comment in review %}
+                {% include "partials/__comment.html" %}
+                {% endfor %}
+            </div> {% endcomment %}
+
+    </div>
+
+
+
+    <div class="other-posts">
+
+        <a
+            href=" {% if blog.owner.id == user.profile.id %} {% url 'profile' user.profile.slug %} {% else %} {% url 'Account' blog.owner.slug %} {% endif %}">
+            <div class="owner">
+                <div class="profile-img">
+                    <img src="{{blog.owner.profile_image.url}}" alt="">
+                    <div class="name">
+                        <h4>{{blog.owner.name}}</h4>
+                        <p>@{{blog.owner.username}}</p>
+                    </div>
+                </div>
+            </div>
+        </a>
+
+        {% comment %} <h3 class="title">Digər postlar</h3>
+        {% for blog in blogs %}
+        {% include "partials/__recipecard.html" %}
+        {% endfor %} {% endcomment %}
+
+    </div>
+</div>
+
+{% endblock  %}

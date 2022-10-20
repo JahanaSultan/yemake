@@ -2,6 +2,10 @@
 {% load hitcount_tags %}
 
 <div class="post-card">
+    {% if blog.isActive %}
+        {% else %}
+        <div class="time-cook pending">Gözləmədədir</div>
+        {% endif %}
     {% if blog.owner.id == user.profile.id %}
     <div class="dots">
         <i class="fa-solid fa-ellipsis-vertical"></i>

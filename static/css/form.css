@@ -135,3 +135,6 @@ label[for="id_image"] {
   text-align: center;
   color: var(--yellow);
 }
+#preview{
+  display: none;
+}
