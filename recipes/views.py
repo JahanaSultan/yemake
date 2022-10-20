@@ -1,12 +1,12 @@
 from django.shortcuts import render,  redirect
-from .models import Blog, Category, Review, Vote, RecipeBook
+from .models import Blog, Review, Vote, RecipeBook
 from blog.models import Blog as Blg
 from .forms import RecipeForm, ReviewForm
 from django.contrib.auth.decorators import login_required
 from .utils import searchRecipe, Paginations
 from django.db.models import Q
 from django.contrib import messages
-
+from users.models import Profile
 
 
 
@@ -53,11 +53,14 @@ def Recipes(request):
 
 def details(request, slug):
     form=ReviewForm
+    user=Profile.objects.get(username=request.user.username)
     blog = Blog.objects.get(slug=slug)
     blogs= Blog.objects.filter(category=blog.category).filter(~Q(id=blog.id))
     reviews=Review.objects.filter(recipe=blog)
     upvote=Vote.objects.filter(recipe=blog)
     book=RecipeBook.objects.filter(recipe__slug=slug).count()
+    like=Vote.objects.filter(recipe=blog, owner=user )
+    bookmark=RecipeBook.objects.filter(recipe=blog, owner=user)
 
     if request.method == "POST":
         form=ReviewForm(request.POST)
@@ -79,7 +82,9 @@ def details(request, slug):
         "review":reviews,
         "upvote":upvote,
         "form":form,
-        "book":book
+        "book":book,
+        "like":like,
+        "bookmark":bookmark
   
     }
     return render(request, "recipes/recipe_details.html", context)
@@ -143,3 +148,39 @@ def deleteRecipe(request, pk):
     }
     return render(request, "recipes/recipes_form.html", context)
 
+
+@login_required
+def recipe_book_add(request):
+    if request.method == 'POST':
+        blog_id = request.POST.get('blog-id')
+        blog_var = Blog.objects.get(id=blog_id)
+        user=Profile.objects.get(username=request.user.username)
+        try:
+            recipe_book = RecipeBook.objects.get(owner=user, recipe=blog_var)
+            if recipe_book:
+                recipe_book.delete()
+                messages.warning(request, "Resept Kitabından Silindi")
+
+        except:
+            RecipeBook.objects.create(owner=user, recipe=blog_var)
+            messages.success(request, "Resept Kitabına Əlavə Edildi")
+        finally:
+            return redirect(request.META.get("HTTP_REFERER", "/"))
+
+
+@login_required
+def recipe_like_add(request):
+    if request.method == 'POST':
+        blog_id = request.POST.get('blog-id')
+        blog_var = Blog.objects.get(id=blog_id)
+        user=Profile.objects.get(username=request.user.username)
+        try:
+            recipe_like = Vote.objects.get(owner=user, recipe=blog_var)
+            if recipe_like:
+                recipe_like.delete()
+                
+        except:
+            Vote.objects.create(owner=user, recipe=blog_var)
+            
+        finally:
+            return redirect(request.META.get("HTTP_REFERER", "/"))

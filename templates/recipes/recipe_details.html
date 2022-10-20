@@ -18,14 +18,34 @@
    
 
     <div class="detail">
-        <div class="category top">
-            <i class="fa-regular fa-thumbs-up"></i>
-            ({{upvote | length}})
+        <form class="category top" method="POST" action="{% url 'like' %}">
+            {% csrf_token %}
+            <input type="hidden" name="blog-id" value="{{blog.id}}">
+            
+            <button type="submit">
+                {% if like %}
+                <i class="fa-solid fa-thumbs-up"></i>
+                {% else %}
+                <i class="fa-regular fa-thumbs-up"></i>
+                {% endif %}
+                ({{upvote | length}})</button>
 
-        </div>
-        <div class="comments top"><i class="fa-regular fa-comment"></i>({{review | length}})</div>
-        <div class="recipe-book top"> <i class="fa-solid fa-book"></i>({{book}})
-           </div>
+        </form>
+        <div class="comments top">
+            <i class="fa-regular fa-comment"></i>
+            
+            ({{review | length}})</div>
+        <form class="recipe-book top" method="POST" action="{% url 'recipebook' %}"> 
+            {% csrf_token %}
+            <input type="hidden" name="blog-id" value="{{blog.id}}">
+            <button type="submit">
+                {% if bookmark %}
+                <i class="fa-solid fa-bookmark"></i>
+                {% else %}
+                <i class="fa-regular fa-bookmark"></i>
+                {% endif %}
+                ({{book}})</button>
+        </form>
         <div class="time top"><i class="fa-regular fa-clock"></i> {{blog.cook_time}} {{blog.time}}</div>
     </div>
     <div class="content">
