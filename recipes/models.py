@@ -84,11 +84,7 @@ class Review(models.Model):
         unique_together=[["owner", "recipe"]]
 
 class Vote(models.Model):
-    VOTE_TYPE=(
-        ("up","up vote"),
-        ("down", "down vote")
-    )
-    value=models.CharField(max_length=200, choices=VOTE_TYPE)
+    value=models.BooleanField()
     owner=models.ForeignKey(Profile, on_delete=models.CASCADE, null=True)
     recipe = models.ForeignKey(Blog, on_delete=models.CASCADE)
 

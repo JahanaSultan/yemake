@@ -137,4 +137,5 @@ label[for="id_image"] {
 }
 #preview{
   display: none;
+  object-fit: cover;
 }

@@ -56,8 +56,7 @@ def details(request, slug):
     blog = Blog.objects.get(slug=slug)
     blogs= Blog.objects.filter(category=blog.category).filter(~Q(id=blog.id))
     reviews=Review.objects.filter(recipe=blog)
-    upvote=Vote.objects.filter(Q(recipe=blog) & Q(value="up"))
-    downvote=Vote.objects.filter(Q(recipe=blog) & Q(value="down"))
+    upvote=Vote.objects.filter(recipe=blog)
     book=RecipeBook.objects.filter(recipe__slug=slug).count()
 
     if request.method == "POST":
@@ -79,7 +78,6 @@ def details(request, slug):
         "blogs" : blogs,
         "review":reviews,
         "upvote":upvote,
-        "downvote":downvote,
         "form":form,
         "book":book
   
@@ -132,10 +130,6 @@ def updateRecipe(request, pk):
     return render(request, "recipes/recipes_form.html", context)
 
 
-
-
-
-
 @login_required(login_url="signin")
 def deleteRecipe(request, pk):
     page="delete"
@@ -145,7 +139,7 @@ def deleteRecipe(request, pk):
         blog.delete()
         return redirect("index")
     context={
-        "page":page
+        "page":page,
     }
     return render(request, "recipes/recipes_form.html", context)
 

@@ -5,35 +5,30 @@
 {% endblock css %}
 {% block content %} 
 
-
+<!--Blog yaratmaq ucun form -->
 
 <div class="form">
     <div class="page">
-
-<!--Resept update etmek ucun form -->
-
-
-{% if page == "update" %}
-<h1>Reseptə Düzəliş et</h1>
+{% if page == "createblog" %}
+<h1>Blog yaz</h1>
 
 {% include "partials/__create_blog.html" %}
 
 
+<!--Blog update etmek ucun form -->
 
-<!-- Resept silmək üçün form -->
+
+{% elif page == "updateblog" %}
+<h1>Bloga düzəliş et</h1>
+{% include "partials/__create_blog.html" %}
 
 
-{% elif page == "delete" %}
+<!--Blog silmek ucun form -->
+
+{% elif page == "deleteBlog" %}
 
 {% include "partials/__delete_modal.html" %}
 
-
-<!-- Resept yaratmaq ucun form -->
-
-
-{% else %}
-<h1>Resept Yaz</h1>
-{% include "partials/__create_blog.html" %}
 {% endif %} 
 </div></div>
 {% endblock content %}

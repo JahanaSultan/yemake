@@ -20,4 +20,8 @@ class NewsletterForm(forms.Form):
     subject = forms.CharField()
     receivers = forms.CharField()
     message = forms.CharField(widget=forms.Textarea, label="Email content")
+
+    subject.widget.attrs.update({'class': 'contact-input'})
+    receivers.widget.attrs.update({'class': 'contact-input'})
+    message.widget.attrs.update({'class': 'contact-input h-52 outline-none'})
     

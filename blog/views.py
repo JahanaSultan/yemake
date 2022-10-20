@@ -60,7 +60,7 @@ def createBlog(request):
         "form": form,
         "page":page
     }
-    return render(request, "recipes/recipes_form.html", context)
+    return render(request, "blog/blogs_form.html", context)
 
 
 
@@ -82,7 +82,7 @@ def updateBlog(request, pk):
         "form": form,
         "page":page
     }
-    return render(request, "recipes/recipes_form.html", context)
+    return render(request, "blog/blogs_form.html", context)
 
 
 
@@ -97,4 +97,4 @@ def deleteBlog(request, pk):
     context={
         "page":page
     }
-    return render(request, "recipes/recipes_form.html", context)
+    return render(request, "blog/blogs_form.html", context)

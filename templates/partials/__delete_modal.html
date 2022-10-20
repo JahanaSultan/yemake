@@ -1,0 +1,7 @@
+<h1 class="danger">Diqqət!</h1>
+<form method="POST" enctype="multipart/form-data">
+  {% csrf_token %} 
+  <h2>Bu postu silmək istədiyinizdən əminsiniz?</h2>
+  <div class="submit"><a href="{% url 'index' %}" class="btn">Ana Səhifəyə Qayıt</a> <input type="submit" value="Sil" /></div>
+</form>
+
