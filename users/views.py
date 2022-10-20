@@ -127,5 +127,5 @@ def editAccount(request):
     context={
         "form":form
     }
-    print()
+   
     return render(request, "users/profile_form.html",context)

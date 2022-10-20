@@ -32,14 +32,16 @@ class ProfileForm(ModelForm):
     class Meta:
         model=Profile
         email=forms.CharField(error_messages={'unique': u'My custom message'}) 
-        fields=["cover_image","profile_image","name","username","short_info",]
+        fields=["name","cover_image","profile_image","username","short_info"]
         labels = {
             "cover_image": "Örtük Şəkli",
             'profile_image': 'Profil Şəkli',
             "name":"Ad Soyad",
             "username":"İstifadəçi Adı",
             "short_info":"Qısa Məlumat",
-            "bio":"Haqqımda"
         }
+       
+            
+            
        
             

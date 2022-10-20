@@ -1,53 +1,113 @@
+/* Edit form box */
 .profile-form {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.profile-form label {
-  font-weight: 900;
+  justify-content: center;
 }
 
-h3{
-    width: 100%;
+.profile-form .form {
+  width: 60%;
+  padding-bottom: 25px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
-/* label[for="profile_image-clear_id"],
-#profile_image-clear_id,
-label[for="cover_image-clear_id"],
-#cover_image-clear_id {
-  display: none;
-} */
+/* Profile and cover photo relative box */
 
-.field{
-    margin: 20px;
-    display: flex;
-    align-items: center;
-}
-input{
-height: 40px;
-width: 200px;
-border: 1px solid rgba(128, 128, 128, 0.488);
-padding: 10px;
-}
-label{
-    margin-right: 20px;
-    
-}
-#text{
-    color:red
+.profile-relative-div {
+  position: relative;
+  height: 400px;
+  width: 100%;
 }
 
-input[type="submit"]{
-  width: 200px;
-  height: 40px;
-  border: 1px solid var(--water-green);
-  border-radius: 20px;
-  background-color: transparent;
-  color: var(--water-green);
+.profile-relative-div img {
+  width: 100%;
+  height: 100%;
+}
+
+/* cover image */
+
+.profile-relative-div .cvr-img {
+  width: 100%;
+  height: 250px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* profile-img */
+
+.profile-relative-div .prf-img img {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.profile-relative-div .prf-img {
+  position: absolute;
+  top: 170px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.profile-relative-div .cvr-img::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
   transition: 0.3s ease;
-  cursor: pointer;
 }
-input[type="submit"]:hover{
-background-color: var(--water-green);
-color: #fff;
+
+.profile-relative-div .cvr-img label {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  z-index: 1000;
+  cursor: pointer;
+  transform: translateX(500%);
+  transition: 0.3s ease;
+}
+
+.profile-relative-div .cvr-img label i {
+  color: var(--yellow);
+  font-size: 20px;
+  transition: 0.3s ease;
+}
+.profile-relative-div .cvr-img label:hover i{
+  transform: scale(1.2);
+}
+
+.profile-relative-div .cvr-img:hover label{
+  transform: translateX(0);
+}
+
+.profile-relative-div .cvr-img:hover::after{
+  background-color: rgba(0, 0, 0, 0.368);
+  backdrop-filter: blur(1px);
+}
+
+.profile-relative-div .prf-img label{
+  cursor: pointer;
+  color: var(--yellow);
+  display: block;
+  text-align: center;
+}
+
+.profile-form .field{
+  width: 100%;
+  padding: 0 50px;
+}
+.field label{
+display: block;
+color: var(--yellow);
+font-weight: 400;
+}
+
+.field label:not(:first-of-type){
+  margin-top: 15px;
+}
+
+.profile-form .form form button{
+  background-color: var(--yellow);
+  margin-top: 25px;
 }

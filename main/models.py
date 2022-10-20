@@ -11,5 +11,5 @@ class SubscribedUsers(models.Model):
     
     class Meta:
         ordering= ["-created_date"]
-        verbose_name="İzləyici"
-        verbose_name_plural="İzləyicilər"
+        verbose_name="Email İzləyici"
+        verbose_name_plural="Email İzləyicilər"
