@@ -1,7 +1,12 @@
 {% load static %}
 
 <div class="comment-body">
-    <div class="dots"><i class="fa-solid fa-ellipsis"></i></div>
+    <div class="dots">
+        <i class="fa-solid fa-ellipsis-vertical"></i>
+    </div>
+     <div class="crud">
+        <li class="delete-comment" data-id={{comment.id}}>Sil</li>
+    </div>
     <div class="img">
         {% if comment.owner.id == user.profile.id %}
         <a href="{% url 'profile' user.profile.slug %}"> <img src="{{comment.owner.profile_image.url}}"></div></a>
@@ -20,3 +25,4 @@
         <p class="comment-text">{{comment.body|linebreaksbr}}</p>
     </div>
 </div>
+

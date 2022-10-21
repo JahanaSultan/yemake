@@ -1,9 +1,7 @@
-from cProfile import label
-from dataclasses import fields
-from turtle import title
+from tkinter import Widget
 from django.forms import ModelForm
 from .models import Blog, Review
-
+from django import forms
 
 class RecipeForm(ModelForm):
     class Meta:
@@ -20,10 +18,6 @@ class RecipeForm(ModelForm):
         }
 
 class ReviewForm(ModelForm):
-    class Meta:
-        model=Review
-        fields=['body']
-        labels={
-            "body":""
-        }
+    
+    body=forms.CharField(widget=forms.Textarea, max_length=1000,)
 

@@ -12,7 +12,7 @@
     </div>
     <div class="crud">
         <a href="{% url 'updateblog' blog.id %}"><li>Düzəliş et</li></a>
-        <a href="{% url 'deleteBlog' blog.id %}"><li>Sil</li></a>
+       <li class="delete-blog" data-id={{blog.id}}>Sil</li>
     </div>
     {% endif %}
     <div class="img">

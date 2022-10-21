@@ -259,8 +259,15 @@ object-fit: cover;
   text-align: left;
   flex-direction: column;
 }
-.display{
-  display: block;
+.crud li{
+  cursor: pointer;
+}
+.comment-body .crud{
+  left: unset;
+  right: 0;
+  border: 1px solid #4e4e4e3b;
+  border-right: 0;
+  border-radius: 20px 0 0 20px;
 }
 .play{
   width: 50px;
@@ -346,6 +353,9 @@ object-fit: cover;
 }
 
 .pagination a:hover:not(.active) {background-color: rgba(221, 221, 221, 0.316);}
+
+
+
 @media screen and (max-width: 1024px) {
   aside {
     display: none;

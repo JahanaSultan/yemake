@@ -75,7 +75,10 @@ img {
   padding-left: 50px;
   padding-right: 50px;
 }
-
+.display{
+ height: 100vh!important;
+ pointer-events: all!important;
+}
 /* ALERTIFY */
 
 .ajs-message{
@@ -142,7 +145,9 @@ button {
 img {
   object-fit: cover;
 }
-
+.display-crud{
+  display: flex!important;
+}
 /* NAVIGATION */
 
 nav {
@@ -401,6 +406,106 @@ hr {
   width: 300px;
   padding: 10px;
 }
+
+
+.not-found{
+  display: flex;
+  width: 100%;
+  height: calc(100vh - 80px);
+  align-items: center;
+  justify-content: center;
+flex-direction: column;
+}
+.not-found a{
+padding: 10px 20px;
+background-color: var(--yellow);
+border-radius: 20px;
+border: 0;
+margin-top: 20px;
+color: #fff;
+}
+.not-found .div404{
+  font-size: 150px;
+  font-weight: 900;
+}
+.not-found img{
+  width: 130px;
+  height: 130px;
+}
+
+
+
+
+/* MODAL*/
+
+.modal{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 0;
+  background-color: rgba(0, 0, 0, 0.593);
+  backdrop-filter: blur(3px);
+  z-index: 100000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.5s;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.modal-image, .modal-content{
+width: 350px;
+height: 350px;
+background-color: #fff;
+position: relative;
+z-index: 10000;
+}
+.modal-content{
+  border-radius: 20px;
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.modal-image .close i, 
+.modal-content .close i{
+  color: red;
+  font-size: 20px;
+}
+.modal-image .close,
+.modal-content .close{
+  position: absolute;
+  top: 0;
+  right: 0;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content i{
+  font-size: 30px;
+  color: red;
+}
+.modal-content h1{
+  color: red;
+  margin: 20px 0;
+}
+.modal-content button{
+  border: 0;
+  border-radius: 5px;
+  background-color: var(--yellow);
+  color: #fff;
+  font-weight: 700;
+  padding: 10px 20px;
+}
+
 /*Stying for small screens*/
 
 @media screen and (max-width: 1024px) {
@@ -473,3 +578,4 @@ hr {
 .toggle .line3 {
   transform: rotate(45deg) translate(-5px, -6px);
 }
+

@@ -9,8 +9,6 @@
 
 {% block content %}
 
-
-
 <h3 class="title">{{blog.title}} {{blog.id}}</h3>
 <div class="container  padding-x">
 <div class="details">
@@ -82,28 +80,35 @@
 
 
 
-<div class="comments" id="comment">{% if request.user.is_authenticated %}
-
+<div class="comments" id="comment">
+{% if request.user.is_authenticated %}
+{% if blog.isActive %}
 <h1 class="add-comment">Şərh Əlavə Edin</h1>
 
 <!-----COMMENT FORM----->
 
-<form  method="POST" id="UserCommentForm" action="">
-    {% csrf_token %}
-    <div class="comment">
-        <img src="{{user.profile.profile_image.url}}" alt="">
-<div class="submit-btn">{{form}}<input type="submit" value="Əlavə Et"></div></div>
-</form>
+<div class="comment">
+    <img src="{{user.profile.profile_image.url}}" alt="">
+    <div class="submit-btn">
+    <textarea name="comment_body" class="comment-body">
+    </textarea>
+    <button class="addcomment" data-id={{blog.id}}>Əlavə Et</button>
+    </div>
+   </div> 
+    
 
+{% endif %}
 
 {% else %}
 <!--x--COMMENT FORM--x-->
 
 <a href="{% url 'signin' %}?next={{request.path}}"><h4 class="comment-write">Şərh yazmaq üçün Giriş Edin</h4></a>
 {% endif %}
+<div class="comment-cards">
 {% for comment in review %}
 {% include "partials/__comment.html" %}
 {% endfor %}
+</div>
 </div>
 
 
@@ -190,6 +195,44 @@ $('.recipebookbutton').click(function(){
             }
         }
      })
+});
+
+
+// AJAX for Add Comment
+
+$('.addcomment').click(function(){
+    let id = $(this).attr("data-id");
+    let body=$('.comment-body').val()
+    if(body.trim()){
+    $.ajax(
+    {
+        type:"GET",
+        url: "{% url 'recipecomment' %}",
+        data:{
+                 post_id: id,
+                 comment_body:body
+
+        },
+        success: function( data ) 
+        {
+            $('.comment-body').val('')
+            $('.comment-cards').prepend(`
+            
+            <div class="comment-body">
+                <div class="img">
+                    <a href="{% url 'profile' user.profile.slug %}"> <img src="{{user.profile.profile_image.url}}"></div></a>
+                <div class="comment-content">
+                    <a href="{% url 'profile' user.profile.slug %}"><div class="comment-owner"><h3>{{user.profile.name}}</h3>
+                    <small>@{{user.username}}</small> </div></a>
+                    <p class="time-created">İndicə</p>
+                    <p class="comment-text">${body}</p>
+                </div>
+            </div>
+            
+            
+            `)
+        }
+     })}
 });
 
 </script>

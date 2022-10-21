@@ -129,3 +129,8 @@ def newsletter(request):
         form = NewsletterForm()
         form.fields['receivers'].initial = ','.join([active.email for active in SubscribedUsers.objects.all()])
         return render(request, template_name='newsletter.html', context={'form': form})
+
+
+
+def error_404_view(request, exception):
+    return render(request, '404.html')

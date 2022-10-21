@@ -1,3 +1,4 @@
+
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Blog
 from django.contrib.auth.decorators import login_required
@@ -6,6 +7,7 @@ from django.db.models import Q
 from .utils import Paginations
 from hitcount.utils import get_hitcount_model
 from hitcount.views import HitCountMixin
+from django.contrib import messages
 
 # Create your views here.
 
@@ -93,7 +95,8 @@ def deleteBlog(request, pk):
     blog=Blog.objects.filter(owner=profile).get(id=pk)
     if request.method=='POST':
         blog.delete()
-        return redirect(f'/account/{profile.slug}')
+        messages.success(request,"Blog Silindi")
+        return redirect(request.META.get("HTTP_REFERER", "/"))
     context={
         "page":page
     }

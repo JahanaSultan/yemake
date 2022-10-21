@@ -1,13 +1,12 @@
 from django.shortcuts import render,  redirect
 from .models import Blog, Review, Vote, RecipeBook
-from blog.models import Blog as Blg
 from .forms import RecipeForm, ReviewForm
 from django.contrib.auth.decorators import login_required
 from .utils import searchRecipe, Paginations
 from django.db.models import Q
 from django.contrib import messages
 from users.models import Profile
-
+from django.utils.datastructures import MultiValueDictKeyError
 
 
 
@@ -46,14 +45,33 @@ def Recipes(request):
     return render(request, "recipes/recipes.html", context)
 
 
+def add_comment(request):
+     user=Profile.objects.get(username=request.user.username)
+     if request.method == "GET":
+        blog_id = request.GET['post_id']
+        comment_body=request.GET['comment_body']
+        blog_var = Blog.objects.get(id=blog_id)
+        try:
+            Review.objects.create(owner=user, recipe=blog_var, body=comment_body)
+        except:
+            messages.error(request, "Xəta baş verdi!")
+            
+        finally:
+            return redirect(request.META.get("HTTP_REFERER", "/"))
 
+
+def delete_comment(request, pk):
+    profile=request.user.profile
+    comment=profile.review_set.get(id=pk)
+    if request.method=='POST':
+        comment.delete()
+        messages.success(request,"Şərhiniz Silindi")
+        return redirect(request.META.get("HTTP_REFERER", "/"))
 
 
 
 
 def details(request, slug):
-    form=ReviewForm
-    
     blog = Blog.objects.get(slug=slug)
     blogs= Blog.objects.filter(category=blog.category).filter(~Q(id=blog.id))
     reviews=Review.objects.filter(recipe=blog)
@@ -66,26 +84,13 @@ def details(request, slug):
     else:
         like=False
         bookmark=False
-    if request.method == "POST":
-        form=ReviewForm(request.POST)
-        if form.is_valid():
-            review=form.save(commit=False)
-            review.recipe=blog
-            review.owner=request.user.profile
-            review.save()
-            messages.success(request, "Şərhiniz əlavə edildi")
-            return redirect("blogdetails", slug=blog.slug)
-        else:
-            messages.error(request, "Boş Şərh Olmaz")
-        
-
+   
 
     context = {
         "blog" : blog,
         "blogs" : blogs,
         "review":reviews,
         "upvote":upvote,
-        "form":form,
         "book":book,
         "bookmark":bookmark,
         "like":like,
@@ -108,7 +113,7 @@ def createRecipe(request):
             recipe=form.save(commit=False)
             recipe.owner=profile
             recipe.save()
-            return redirect("index")
+            return redirect(f'/account/{profile.slug}')
 
     context = {
         "form": form
@@ -130,7 +135,7 @@ def updateRecipe(request, pk):
         form=RecipeForm(request.POST, request.FILES, instance=blog)
         if form.is_valid():
             form.save()
-            return redirect("index")
+            return redirect(f'/account/{profile.slug}')
 
     context = {
         "form": form,
@@ -146,7 +151,8 @@ def deleteRecipe(request, pk):
     blog=profile.blog_set.get(id=pk)
     if request.method=='POST':
         blog.delete()
-        return redirect("index")
+        messages.success(request,"Resept Silindi")
+        return redirect(request.META.get("HTTP_REFERER", "/"))
     context={
         "page":page,
     }
@@ -163,11 +169,8 @@ def recipe_book_add(request):
             recipe_book = RecipeBook.objects.get(owner=user, recipe=blog_var)
             if recipe_book:
                 recipe_book.delete()
-                messages.warning(request, "Resept Kitabından Silindi")
-
         except:
             RecipeBook.objects.create(owner=user, recipe=blog_var)
-            messages.success(request, "Resept Kitabına Əlavə Edildi")
         finally:
             return redirect(request.META.get("HTTP_REFERER", "/"))
 
