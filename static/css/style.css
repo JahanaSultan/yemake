@@ -153,15 +153,15 @@ img {
 nav {
   width: 100%;
   background-color: #fff;
-  border-bottom: 1px solid var(--grass-green);
-  box-shadow: 0 3px 20px rgba(0, 0, 0, 0.2);
+  border-bottom: 1px solid rgb(221, 221, 221);
+  box-shadow: rgba(27, 31, 35, 0.04) 0px 1px 0px, rgba(255, 255, 255, 0.25) 0px 1px 0px inset;
   display: flex;
   align-items: center;
   position: sticky;
   top: 0;
   z-index: 1000;
   justify-content: space-between;
-  height: 80px;
+  height: 60px;
 }
 
 .logo {

@@ -15,7 +15,6 @@ class CustomUserCreationForm(UserCreationForm):
             "first_name": "Ad Soyad",
             'username': 'İstifadəçi Adı'
         }
-       
 
     def __init__(self, *args, **kwargs):
       super(CustomUserCreationForm, self).__init__(*args, **kwargs)
@@ -26,7 +25,7 @@ class CustomUserCreationForm(UserCreationForm):
       self.fields['username'].widget.attrs['placeholder'] = 'İstifadəçi Adı'
       self.fields['password1'].widget.attrs['placeholder'] = 'Şifrə'
       self.fields['password2'].widget.attrs['placeholder'] = 'Təkrar Şifrə'
-      
+    
 
 class ProfileForm(ModelForm):
     class Meta:
