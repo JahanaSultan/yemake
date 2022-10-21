@@ -13,6 +13,10 @@
   text-align: center;
 }
 
+.error-div input{
+  border: 1px solid rgba(255, 0, 0, 0.41)!important;
+  background-color: rgba(255, 0, 0, 0.086)!important;
+}
 
 .imgBx {
   width: 50%;
@@ -35,6 +39,9 @@
   align-items: center;
   padding: 40px;
   transition: 0.5s;
+}
+.formBx form{
+  width: 100%;
 }
 label{
   margin-top: 10px;

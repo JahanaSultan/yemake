@@ -1,3 +1,4 @@
+from django.core.exceptions import ValidationError
 from django.forms import ModelForm
 from django import forms
 from django.contrib.auth.models import User
@@ -25,6 +26,12 @@ class CustomUserCreationForm(UserCreationForm):
       self.fields['username'].widget.attrs['placeholder'] = 'İstifadəçi Adı'
       self.fields['password1'].widget.attrs['placeholder'] = 'Şifrə'
       self.fields['password2'].widget.attrs['placeholder'] = 'Təkrar Şifrə'
+
+    def clean_email(self):
+        email = self.cleaned_data['email']
+        if User.objects.filter(email=email).exists():
+            raise ValidationError("Email artıq mövcuddur")
+        return email
     
 
 class ProfileForm(ModelForm):

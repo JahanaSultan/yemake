@@ -20,8 +20,9 @@
       <h2>Qeydiyyatdan Keç</h2>
       {% for field in form %}
       <label for="formInput#text">{{field.label}}</label>
+      <div class="{% if field.errors %}error-div{% else %}input-div{% endif %}">
       {{field}}
-
+      </div>
       {% comment %} {% if field.help_text %}
       <small>{{field.help_text}}</small><br>
       {% endif %} {% endcomment %}
