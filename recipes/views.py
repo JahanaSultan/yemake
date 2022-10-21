@@ -53,15 +53,19 @@ def Recipes(request):
 
 def details(request, slug):
     form=ReviewForm
-    user=Profile.objects.get(username=request.user.username)
+    
     blog = Blog.objects.get(slug=slug)
     blogs= Blog.objects.filter(category=blog.category).filter(~Q(id=blog.id))
     reviews=Review.objects.filter(recipe=blog)
     upvote=Vote.objects.filter(recipe=blog)
     book=RecipeBook.objects.filter(recipe__slug=slug).count()
-    like=Vote.objects.filter(recipe=blog, owner=user )
-    bookmark=RecipeBook.objects.filter(recipe=blog, owner=user)
-
+    if request.user.is_authenticated:
+        user=Profile.objects.get(username=request.user.username)
+        bookmark=RecipeBook.objects.filter(owner=user, recipe=blog)
+        like=Vote.objects.filter(owner=user, recipe=blog)
+    else:
+        like=False
+        bookmark=False
     if request.method == "POST":
         form=ReviewForm(request.POST)
         if form.is_valid():
@@ -83,8 +87,8 @@ def details(request, slug):
         "upvote":upvote,
         "form":form,
         "book":book,
+        "bookmark":bookmark,
         "like":like,
-        "bookmark":bookmark
   
     }
     return render(request, "recipes/recipe_details.html", context)
@@ -149,10 +153,10 @@ def deleteRecipe(request, pk):
     return render(request, "recipes/recipes_form.html", context)
 
 
-@login_required
+
 def recipe_book_add(request):
-    if request.method == 'POST':
-        blog_id = request.POST.get('blog-id')
+    if request.method == 'GET':
+        blog_id = request.GET['post_id']
         blog_var = Blog.objects.get(id=blog_id)
         user=Profile.objects.get(username=request.user.username)
         try:
@@ -168,10 +172,9 @@ def recipe_book_add(request):
             return redirect(request.META.get("HTTP_REFERER", "/"))
 
 
-@login_required
 def recipe_like_add(request):
-    if request.method == 'POST':
-        blog_id = request.POST.get('blog-id')
+    if request.method == 'GET':
+        blog_id = request.GET['post_id']
         blog_var = Blog.objects.get(id=blog_id)
         user=Profile.objects.get(username=request.user.username)
         try:

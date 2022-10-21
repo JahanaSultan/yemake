@@ -81,7 +81,6 @@ class Review(models.Model):
         return self.body
     class Meta:
         ordering=["-created"]
-        unique_together=[["owner", "recipe"]]
 
 class Vote(models.Model):
     owner=models.ForeignKey(Profile, on_delete=models.CASCADE, null=True)
