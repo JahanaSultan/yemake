@@ -1,22 +1,27 @@
 {% extends "base.html" %}
-
-
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href='{% static '/css/notification.css' %}?{% now "U" %}'>
+{% endblock css %}
+{% block title %}
+<title>Bildirişlər</title>
+{% endblock title %}
 {% block content %}
-
-{% for no in notifications %}
-
-<h2>{{no.sender.username}}</h2> sizin
-<h2>{{no.post.title}}</h2> reseptinizi
-
-beyendi
-
-<hr>
-<hr>
-<hr>
-
-{% endfor %}
-
-
+<h3 class="title">Bildirişlər</h3>
+<div class="container">
+    <div class="notification">
+        {% for notification in notifications %}
+        <div class="notification-like-box">
+            <div class="image"><img src="{{notification.sender.profile_image.url}}" alt=""></div>
+            <div class="content">
+                <a href="{% url 'Account' notification.sender.slug %}"><h2>@{{notification.sender.username}}</h2></a>
+                <a href="{% url 'blogdetails' notification.post.slug %}">{{notification.post.title}}</a>
+                <p>Reseptinizi Bəyəndi</p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
 
 
 
