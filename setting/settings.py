@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django_quill',
     'hitcount',
     'main.apps.MainConfig',
+    'notification.apps.NotificationConfig',
     'blog.apps.BlogConfig',
     'users.apps.UsersConfig',
     'recipes.apps.RecipesConfig',
@@ -74,6 +75,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'main.context_processors.notification_count'
             ],
         },
     },

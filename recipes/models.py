@@ -6,6 +6,7 @@ from embed_video.fields  import  EmbedVideoField
 from django_quill.fields import QuillField
 
 
+
 # Create your models here.
 class Category(models.Model):
     title=models.CharField(max_length=250)
@@ -92,6 +93,8 @@ class Vote(models.Model):
     
     def __str__(self):
         return self.recipe.title
+
+
 
 class RecipeBook(models.Model):
     owner=models.ForeignKey(Profile,on_delete=models.CASCADE, null=True)

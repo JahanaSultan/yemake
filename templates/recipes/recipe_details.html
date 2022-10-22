@@ -200,6 +200,10 @@ $('.recipebookbutton').click(function(){
 
 // AJAX for Add Comment
 
+
+{% if request.user.is_authenticated %}
+
+
 $('.addcomment').click(function(){
     let id = $(this).attr("data-id");
     let body=$('.comment-body').val()
@@ -234,7 +238,7 @@ $('.addcomment').click(function(){
         }
      })}
 });
-
+{% endif %}
 </script>
 
 {% endblock js %}

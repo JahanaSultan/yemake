@@ -53,15 +53,11 @@
             <li><a href="{% url 'contact' %}">Əlaqə</a></li>
             {% if request.user.is_authenticated  %}
             <li>
+                <a href="{% url 'notification' %}">
                <div class="notifications">
                    <i class="fa-solid fa-bell"></i>
-                   <div class="count">0</div>
-                   {% comment %} <div class="notification-dropdown">
-                    <ul>
-                        <li>hello</li>
-                    </ul>
-                   </div> {% endcomment %}
-               </div>
+                   <div class="count">{{notification_count}}</div>
+               </div></a>
             </li>
                 <li class="profile-nav">
                     <div class="profile-go">

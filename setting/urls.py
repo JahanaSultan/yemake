@@ -27,6 +27,7 @@ urlpatterns = [
     path('', include('recipes.urls')),
     path('', include('blog.urls')),
     path('',include('main.urls')),
+    path('notification/',include('notification.urls')),
 
     #Reset Password
 

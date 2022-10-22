@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+{% for no in notifications %}
+
+<h2>{{no.sender.username}}</h2> sizin
+<h2>{{no.post.title}}</h2> reseptinizi
+
+beyendi
+
+<hr>
+<hr>
+<hr>
+
+{% endfor %}
+
+
+
+
+
+{% endblock content %}

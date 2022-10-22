@@ -24,6 +24,7 @@ from django.contrib.auth.decorators import user_passes_test
 from django.core.mail import EmailMessage
 
 from .models import SubscribedUsers
+from notification.models import Notification
 # Create your views here.
 
 
