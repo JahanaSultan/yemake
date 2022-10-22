@@ -12,7 +12,7 @@
 {% block title %}<title>Profil</title>{% endblock title %}
 
 {% block content %}
-<div class="modal">
+<div class="modal mdl">
   <div class="modal-image">
   <img src="" alt="" id="modal-view">
   <div class="close"><i class="fa-solid fa-xmark"></i></div>
@@ -43,6 +43,9 @@
               
               </div>
             </div>
+
+<!---- SUPERUSER NEWSLETTER SECTION ---->
+
             {% if user.is_superuser %}
            
             <div class="w-full lg:w-4/12 px-4 lg:order-3 lg:text-right lg:self-center">
@@ -54,6 +57,10 @@
             </div> 
 
             {% endif %}
+
+<!--X-SUPERUSER NEWSLETTER SECTION -X-->
+
+
             <div class="w-full lg:w-4/12 px-4 lg:order-3 lg:text-right lg:self-center">
               <div class="py-6 px-3 mt-32 sm:mt-0">
                 
@@ -169,7 +176,7 @@
           <div class="flex flex-wrap justify-center">
             <div class="w-full lg:w-3/12 px-4 lg:order-2 flex justify-center">
               <div class="relative w-full h-full">
-                <img alt="..." src="{{profil.profile_image.url}}" class=" shadow-xl rounded-full border-none  w-44 h-44 absolute  -top-1/2 left-1/2  -translate-x-1/2  " >
+                <img alt="..." src="{{profil.profile_image.url}}" class=" shadow-xl rounded-full border-none  w-44 h-44 absolute  -top-1/2 left-1/2  -translate-x-1/2  " id="profile-image" >
               </div>
             </div>
             <div class="w-full lg:w-4/12 px-4 lg:order-3 lg:text-right lg:self-center">
@@ -281,7 +288,7 @@
 
 let image=document.getElementById("profile-image")
 let modal_image=document.getElementById("modal-view")
-let modal=document.querySelector(".modal")
+let modal=document.querySelector(".mdl")
 let close=document.querySelector(".close")
 image.addEventListener("click",()=>{
   modal.classList.add("display")
@@ -290,9 +297,7 @@ image.addEventListener("click",()=>{
 })
 const removeModal=()=>{
   modal.classList.remove("display")
-  console.log("removed")
 }
-close.addEventListener("click",removeModal)
 modal.addEventListener("click",removeModal)
 
 </script>
