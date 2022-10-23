@@ -169,6 +169,10 @@
             else{
             document.querySelector(".likebutton").innerHTML=`<i class="fa-regular fa-thumbs-up"></i>(<span class="likecount">${count-1}</span>)`
             }
+        },
+        error: function (error) {
+            alertify.set('notifier','position', 'top-center');
+            alertify.error('Öz postunuzu Bəyənə Bilməzsiniz');
         }
      })
 });
@@ -193,6 +197,10 @@ $('.recipebookbutton').click(function(){
             else{
             document.querySelector(".recipebookbutton").innerHTML=`<i class="fa-regular fa-bookmark"></i>(<span class="recipebookcount">${count-1}</span>)`
             }
+        },
+        error: function (error) {
+            alertify.set('notifier','position', 'top-center');
+            alertify.error('Öz postunuzu Resept Kitabınıza Əlavə Edə Bilməzsiniz');
         }
      })
 });

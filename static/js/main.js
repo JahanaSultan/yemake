@@ -1,16 +1,3 @@
-// const box=document.querySelector(".main")
-// const select=document.getElementById('lang')
-// const loading=document.querySelector('.loading')
-
-// const displayLoading=()=>{
-//     loading.classList.add('display')
-// }
-
-// const hideLoading=()=>{
-//        setTimeout(()=>{
-//         loading.classList.remove('display')
-//     },3000)
-// }
 
 // *Sil ve ya duzelis et ucun 
 
@@ -86,7 +73,7 @@ run()
 
 setTimeout(() => {
     document.querySelector(".loader").classList.add("hide")
-}, "1000")
+}, "500")
 
 
 // Modal Display Function
@@ -111,8 +98,6 @@ let delete_recipe=[...document.querySelectorAll(".delete-recipe")]
 let delete_blog=[...document.querySelectorAll(".delete-blog")]
 let mdl_content=document.querySelector(".modal-content")
 
-console.log(mdl_content)
-
 mdl.addEventListener("click",()=>{
     mdl.classList.remove("display")
 })
@@ -122,32 +107,20 @@ modal_func(delete_recipe,mdl,mdl_content,"delete-recipe")
 modal_func(delete_blog,mdl,mdl_content,"delete-blog")
 modal_func(delete_comment,mdl,mdl_content,"delete-comment")
 
+$('.notifications').click(function(){
+    document.querySelector(".dropdown-notification").classList.toggle("show-dropdown") 
+})
 
+if(Number($('.notification-count').html())>0){
 
-
-// // For Recipe Delete Modal
-
-// let delete_recipe=[...document.querySelectorAll(".delete-recipe")]
-// let delete_recipe_modal=document.querySelector(".modal-delete-recipe")
-// let recipe_modal=document.querySelector(".modal-recipe")
-
-// modal_func(delete_recipe,delete_recipe_modal,recipe_modal,"delete-recipe")
-
-// // For Blog Delete Modal
-
-// let delete_blog=[...document.querySelectorAll(".delete-blog")]
-// let delete_blog_modal=document.querySelector(".modal-delete-blog")
-// let blog_modal=document.querySelector(".modal-blog")
-
-// modal_func(delete_blog, delete_blog_modal, blog_modal, "delete-blog")
-
-
-// //Delete Comment Modal
-
-// let delete_comment_modal=document.querySelector(".modal-comment-delete")
-// let close=document.querySelector(".close")
-// let comment_modal=document.querySelector(".modal-comment")
-// let deleteComment=[...document.querySelectorAll(".delete-comment")]
-
-// modal_func(deleteComment, delete_comment_modal, comment_modal, "delete-comment")
-
+$('.notification-bell').click(function(){
+    $.ajax(
+    {
+        type:"GET",
+        url: "/notification/isseen/",
+        success: function( data ) 
+        {
+           $('.notification-count').html(0)
+        }
+     })
+})}

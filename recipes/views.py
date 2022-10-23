@@ -28,6 +28,8 @@ def category_filter(request, slug):
 
 
 
+
+
 def Recipes(request):
    
     blogs, search_query=searchRecipe(request)
@@ -45,6 +47,8 @@ def Recipes(request):
     return render(request, "recipes/recipes.html", context)
 
 
+
+
 def add_comment(request):
      user=Profile.objects.get(username=request.user.username)
      if request.method == "GET":
@@ -60,6 +64,9 @@ def add_comment(request):
             return redirect(request.META.get("HTTP_REFERER", "/"))
 
 
+
+
+
 def delete_comment(request, pk):
     profile=request.user.profile
     comment=profile.review_set.get(id=pk)
@@ -67,6 +74,7 @@ def delete_comment(request, pk):
         comment.delete()
         messages.success(request,"Şərhiniz Silindi")
         return redirect(request.META.get("HTTP_REFERER", "/"))
+
 
 
 
@@ -101,8 +109,6 @@ def details(request, slug):
 
 
 
-
-
 @login_required(login_url="signin")
 def createRecipe(request):
     profile=request.user.profile
@@ -113,14 +119,13 @@ def createRecipe(request):
             recipe=form.save(commit=False)
             recipe.owner=profile
             recipe.save()
+            messages.success(request, "Reseptiniz qeydə alındı, təsdiqləndikdə bildiriş alacaqsınız.")
             return redirect(f'/account/{profile.slug}')
 
     context = {
         "form": form
     }
     return render(request, "recipes/recipes_form.html", context)
-
-
 
 
 
@@ -135,13 +140,16 @@ def updateRecipe(request, pk):
         form=RecipeForm(request.POST, request.FILES, instance=blog)
         if form.is_valid():
             form.save()
+            messages.success(request,"Dəyişiklik qeydə alındı!")
             return redirect(f'/account/{profile.slug}')
 
     context = {
-        "form": form,
+        "form":form,
         "page":page
     }
     return render(request, "recipes/recipes_form.html", context)
+
+
 
 
 @login_required(login_url="signin")
@@ -165,14 +173,17 @@ def recipe_book_add(request):
         blog_id = request.GET['post_id']
         blog_var = Blog.objects.get(id=blog_id)
         user=Profile.objects.get(username=request.user.username)
-        try:
-            recipe_book = RecipeBook.objects.get(owner=user, recipe=blog_var)
-            if recipe_book:
-                recipe_book.delete()
-        except:
-            RecipeBook.objects.create(owner=user, recipe=blog_var)
-        finally:
-            return redirect(request.META.get("HTTP_REFERER", "/"))
+        if user != blog_var.owner:
+            try:
+                recipe_book = RecipeBook.objects.get(owner=user, recipe=blog_var)
+                if recipe_book:
+                    recipe_book.delete()
+            except:
+                RecipeBook.objects.create(owner=user, recipe=blog_var)
+            finally:
+                return redirect(request.META.get("HTTP_REFERER", "/"))
+
+
 
 
 def recipe_like_add(request):
@@ -180,13 +191,14 @@ def recipe_like_add(request):
         blog_id = request.GET['post_id']
         blog_var = Blog.objects.get(id=blog_id)
         user=Profile.objects.get(username=request.user.username)
-        try:
-            recipe_like = Vote.objects.get(owner=user, recipe=blog_var)
-            if recipe_like:
-                recipe_like.delete()
+        if user != blog_var.owner:
+            try:
+                recipe_like = Vote.objects.get(owner=user, recipe=blog_var)
+                if recipe_like:
+                    recipe_like.delete()
+                    
+            except:
+                Vote.objects.create(owner=user, recipe=blog_var)
                 
-        except:
-            Vote.objects.create(owner=user, recipe=blog_var)
-            
-        finally:
-            return redirect(request.META.get("HTTP_REFERER", "/"))
+            finally:
+                return redirect(request.META.get("HTTP_REFERER", "/"))

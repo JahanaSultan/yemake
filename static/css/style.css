@@ -197,16 +197,8 @@ nav {
   transition: 0.3s ease;
   font-size: 18px;
   font-weight: 500;
-  border-left: 2px solid transparent;
-  border-right: 2px solid transparent;
-  padding-left: 5px;
-  padding-right: 5px;
 }
-.nav-links li:not(:last-of-type) a:hover {
-  color: var(--yellow);
-  border-left: 2px solid var(--yellow);
-  border-right: 2px solid var(--yellow);
-}
+
 .join-button {
   color: #fff;
   background-color: var(--carrot);
@@ -586,3 +578,35 @@ z-index: 10000;
   transform: rotate(45deg) translate(-5px, -6px);
 }
 
+
+
+.dropdown-notification{
+  position: absolute;
+  background-color: var(--light-green);
+  border: 1px solid #ddd;
+  z-index: 100;
+  top: 60px;
+  right: 0;
+  width: 300px;
+ display: none;
+ height: 300px ;
+ overflow-y: scroll;
+}
+.dropdown-notification li{
+  border-bottom: 1px solid #ddd;
+  color: #fff;
+  font-size: 14px;
+  padding: 10px;
+  width: 100%;
+ text-align: center;
+}
+.dropdown-notification a{
+display: block!important;
+text-align: center;
+}
+.dropdown-notification a li span{
+color: var(--yellow);
+}
+.show-dropdown{
+  display: block;
+}

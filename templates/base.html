@@ -52,12 +52,55 @@
             <li><a href="{% url 'aboutus' %}">Haqqımızda</a></li>
             <li><a href="{% url 'contact' %}">Əlaqə</a></li>
             {% if request.user.is_authenticated  %}
-            <li>
-                <a href="{% url 'notification' %}">
+            <li class="notification-bell">
+               
                <div class="notifications">
                    <i class="fa-solid fa-bell"></i>
-                   <div class="count">{{notification_count}}</div>
-               </div></a>
+                   <div class="count notification-count">
+                    {% if push.count < 10 %}
+                    {{push.count}}
+                    {% else %}
+                       9+
+                    {% endif %}
+                </div>
+               </div>
+
+               <div class="dropdown-notification">
+                <ul>
+                    {% if push %}
+
+                    {% for notif in push %}
+
+                    {% if notif.notification_type == 1 %}
+
+                    <a href="{% url 'blogdetails' notif.post.slug %}">
+                        <li>@{{notif.sender}} adlı istifadəçi <span>{{notif.post.title}}</span> adlı reseptinizi bəyəndi
+                        </li>
+                    </a>
+
+                    {% elif notif.notification_type == 2 %}
+
+                    <a href="{% url 'blogdetails' notif.post.slug %}">
+                        <li>@{{notif.sender}} adlı istifadəçi <span>{{notif.post.title}}</span> adlı reseptinizə şərh yazdı.
+                        </li>
+                    </a>
+
+                    {% elif notif.notification_type == 4 %}
+
+                    <a href="{% url 'blogdetails' notif.post.slug %}">
+                        <li><span>{{notif.post.title}}</span> adlı reseptiniz artıq yayındadır.
+                        </li>
+                    </a>
+
+                    {% endif %}
+
+                    {% endfor %}
+                    
+                    {% else %}
+                    <li>Yeni bildiriş yoxdur!</li>
+                    {% endif %}
+                </ul>
+               </div>
             </li>
                 <li class="profile-nav">
                     <div class="profile-go">

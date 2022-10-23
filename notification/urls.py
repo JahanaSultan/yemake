@@ -3,5 +3,6 @@ from . import views
 
 
 urlpatterns=[
-path('', views.show_notifications, name="notification" )
+
+path('isseen/',views.update_notification, name="updatenotification"),
 ]

@@ -10,19 +10,45 @@
 <h3 class="title">Bildirişlər</h3>
 <div class="container">
     <div class="notification">
+        {% if notifications %}
+       
         {% for notification in notifications %}
-        <div class="notification-like-box">
+        <div class="{% if notification.is_seen %}notification-like-box {% else %} notification-like-box colorful-box {% endif %}">
+            <div class="delete-notification" data-id={{notification.id}}><i class="fa-solid fa-xmark"></i></div>
             <div class="image"><img src="{{notification.sender.profile_image.url}}" alt=""></div>
             <div class="content">
                 <a href="{% url 'Account' notification.sender.slug %}"><h2>@{{notification.sender.username}}</h2></a>
+                <span>{{notification.date}}</span>
                 <a href="{% url 'blogdetails' notification.post.slug %}">{{notification.post.title}}</a>
                 <p>Reseptinizi Bəyəndi</p>
             </div>
         </div>
-        {% endfor %}
+        {% endfor %} 
+        {% else %}
+        <h1>Bildiriş Yoxdur</h1>
+        {% endif %}
     </div>
 </div>
 
 
 
 {% endblock content %}
+{% block js %}
+
+<script>
+    $('.delete-notification').click(function(){
+        let id = $(this).attr("data-id");
+        let button=$(this)
+        $.ajax(
+        {
+            type:"GET",
+            url: `/notification/delete-notification/${id}`,
+            success: function( data ) 
+            {
+               button.parent().css({"display":"none"})
+            }
+         })
+    })
+</script>
+
+{% endblock js %}
