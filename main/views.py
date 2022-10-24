@@ -81,7 +81,7 @@ def subscribe(request):
         email = request.POST.get('email', None)
 
         if not email:
-            messages.error(request, "You must type legit name and email to subscribe to a Newsletter")
+            messages.error(request, "Abunə olmaq üçün e-poçt yazmalısınız")
             return redirect("/")
 
         if Profile.objects.filter(email=email).first():

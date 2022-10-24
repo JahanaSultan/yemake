@@ -1,5 +1,5 @@
 .contact h1 {
-  background-color: var(--grass-green);
+  background-color: var(--dark-green);
   text-align: center;
   min-height: 50px;
   font-weight: 900;
@@ -28,7 +28,7 @@
 }
 .contact {
   width: 60%;
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  box-shadow: var(--box-shadow);
 }
 .contact button{
   background-color: var(--yellow)!important;
@@ -48,6 +48,7 @@
 }
 @media screen and (max-width: 500px){
   .contact{
-    width: 95%;
+    width: 100%;
+    box-shadow: none;
   }
 }

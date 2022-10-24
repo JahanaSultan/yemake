@@ -1,3 +1,4 @@
+from tabnanny import verbose
 from django.db import models
 from recipes.helper import seo
 from django.utils.crypto import get_random_string
@@ -8,13 +9,12 @@ from django_quill.fields import QuillField
 
 
 # Create your models here.
+
 class Category(models.Model):
     title=models.CharField(max_length=250)
     image=models.ImageField(null=True,upload_to='Category')
     slug=models.SlugField(editable=False, verbose_name="Slug", null=True, unique=True)
 
-
-    
     def __str__(self):
         return self.title
 
@@ -24,7 +24,10 @@ class Category(models.Model):
         else:
             self.slug = seo(self.title)
         super().save(arg,kargs)
-
+    
+    class Meta:
+        verbose_name="Kateqoriya"
+        verbose_name_plural="Kateqoriyalar"
 
 
 class Blog(models.Model):
@@ -52,7 +55,6 @@ class Blog(models.Model):
     youtube_link=EmbedVideoField("Youtube Linki",null=True, blank=True)
     owner=models.ForeignKey(Profile,verbose_name="Postu Paylaşan", null=True, on_delete=models.SET_NULL)
     
-
     def save(self, *arg, **kargs):
         if Blog.objects.filter(title=self.title):
             self.slug=seo(self.title)+get_random_string(length=4)
@@ -60,11 +62,8 @@ class Blog(models.Model):
             self.slug = seo(self.title)
         super().save(arg,kargs)
     
-    
-
     def __str__(self):
         return self.title
-    
     class Meta:
         ordering= ["-created"]
         verbose_name="Resept"
@@ -77,11 +76,12 @@ class Review(models.Model):
     body=models.TextField(null=True,blank=False)
     created=models.DateTimeField(auto_now_add=True)
     
-    
     def __str__(self):
         return self.body
     class Meta:
         ordering=["-created"]
+        verbose_name="Şərh"
+        verbose_name_plural="Şərhlər"
 
 class Vote(models.Model):
     owner=models.ForeignKey(Profile, on_delete=models.CASCADE, null=True)
@@ -89,8 +89,9 @@ class Vote(models.Model):
 
     class Meta:
         unique_together=[["owner", "recipe"]]
+        verbose_name="Bəyənmə"
+        verbose_name_plural="Bəyənmələr"
 
-    
     def __str__(self):
         return self.recipe.title
 
@@ -104,4 +105,6 @@ class RecipeBook(models.Model):
         return str(self.recipe.owner)
     class Meta:
         unique_together=[["owner", "recipe"]]
+        verbose_name="Resept Dəftəri"
+        verbose_name_plural="Resept Dəftəri"
     

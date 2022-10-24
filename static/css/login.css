@@ -77,7 +77,7 @@ label{
 
 input[type="submit"] {
   max-width: 100px;
-  background: var(--carrot);
+  background: var(--light-green);
   color: #fff;
   cursor: pointer;
   font-size: 14px;

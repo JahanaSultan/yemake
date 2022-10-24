@@ -55,7 +55,12 @@
             <li class="notification-bell">
                
                <div class="notifications">
-                   <i class="fa-solid fa-bell"></i>
+                <lord-icon
+                src="https://cdn.lordicon.com/psnhyobz.json"
+                trigger="hover"
+                colors="primary:#ffba00"
+                style="width:32px;height:32px">
+            </lord-icon>
                    <div class="count notification-count">
                     {% if push.count < 10 %}
                     {{push.count}}
@@ -64,8 +69,8 @@
                     {% endif %}
                 </div>
                </div>
-
-               <div class="dropdown-notification">
+            </li>
+            <div class="dropdown-notification ">
                 <ul>
                     {% if push %}
 
@@ -88,7 +93,7 @@
                     {% elif notif.notification_type == 4 %}
 
                     <a href="{% url 'blogdetails' notif.post.slug %}">
-                        <li><span>{{notif.post.title}}</span> adlı reseptiniz artıq yayındadır.
+                        <li><span>{{notif.post.title}}</span> adlı postunuz artıq yayındadır.
                         </li>
                     </a>
 
@@ -101,7 +106,6 @@
                     {% endif %}
                 </ul>
                </div>
-            </li>
                 <li class="profile-nav">
                     <div class="profile-go">
                         {% if user.profile.profile_image %}
@@ -110,18 +114,39 @@
             <img src="{% static 'image/user-default.jpg' %}" alt="">
                         {% endif %}
                          <p>{{user.profile.name}}</p></div> 
-                    <div class="dropdown">
-                        <ul>
-                           <a href="{% url 'profile' user.profile.slug %}">
-                            <li><i class="fa-solid fa-user"></i> Profil</li>
-                           </a><a href="{% url 'edit-account' %}">
-                            <li><i class="fa-solid fa-gear"></i> Tənzimləmələr</li>
-                           </a><a href="{% url 'signout' %}">
-                            <li><i class="fa-solid fa-arrow-right-from-bracket"></i> Çıxış</li>
-                           </a>
-                        </ul>
-                    </div>
+                   
                 </li>
+                <div class="dropdown">
+                    <ul>
+                       <a href="{% url 'profile' user.profile.slug %}">
+                        <li>
+                            <lord-icon
+                                src="https://cdn.lordicon.com/hbvyhtse.json"
+                                trigger="hover"
+                                colors="primary:#fff"
+                                style="width:32px;height:32px">
+                            </lord-icon> Profil</li>
+                       </a>
+                       <a href="{% url 'edit-account' %}">
+                         <li>
+
+                        <lord-icon
+                            src="https://cdn.lordicon.com/hwuyodym.json"
+                            trigger="hover"
+                            colors="primary:#fff"
+                            style="width:32px;height:32px">
+                        </lord-icon> 
+Tənzimləmələr</li>
+                       </a><a href="{% url 'signout' %}">
+                        <li><lord-icon
+                            src="https://cdn.lordicon.com/nhfyhmlt.json"
+                            trigger="hover"
+                            colors="primary:#fff"
+                            style="width:32px;height:32px">
+                        </lord-icon> Çıxış</li>
+                       </a>
+                    </ul>
+                </div>
             
             {% else %}
             <a href="{% url 'signin' %}">
@@ -132,6 +157,35 @@
             
         </ul>
     </nav>
+{% if request.user.is_authenticated %}
+    <div class="mobile-bottom padding-x">
+        <div class="bottom-box bottom-profile">
+            <div class="profile-go">
+            <img src="{{user.profile.profile_image.url}}" alt="">
+             <p>{{user.profile.name}}</p>
+            </div> 
+        </div>  
+    
+<div class="noti bottom-box">
+            <div class="notifications ">
+             <lord-icon
+             src="https://cdn.lordicon.com/psnhyobz.json"
+             trigger="hover"
+             colors="primary:#ffba00"
+             style="width:30px;height:30px">
+         </lord-icon>
+                <div class="count notification-count">
+                 {% if push.count < 10 %}
+                 {{push.count}}
+                 {% else %}
+                    9+
+                 {% endif %}
+             </div>
+            </div>
+</div>
+
+    </div>
+    {% endif %}
     <!-------x-------Navigation-------x------->
 
 
@@ -151,12 +205,12 @@
             <div class="input">
                 <form class="subscribe" action="{% url 'subscribe' %}" method="POST">
                     {% csrf_token %}
-                    <h5>Her hafta yeni tarifler emailinize gelsin:</h5>
+                    <h4>Her həftə yeni reseptlər emailinizə gəlsin:</h4>
                     <input type="email" placeholder="Email" name="email">
                     <button>Abone Ol</button>
                 </form>
                 <div class="search">
-                    <h5>Axtarmaq istədiyiniz kəliməni yazın:</h5>
+                    <h4>Axtarmaq istədiyiniz kəliməni yazın:</h4>
                     <form action="{% url 'recipes' %}" method="get" id="searchForm">
                     <input type='text' id="search" class="searchbar" placeholder="Axtar" name="search_query" />
                     <button type="submit" id="searchbarsubmit">Axtar</button>
@@ -165,16 +219,15 @@
             </div>
             <div class="footer-nav">
 
-                <a href="">En son postlar</a>
-                <a href="about.html">Hakkımızda</a>
-                <a href="contact.html">İletişim</a>
+                <a href="{% url 'blogs' %}">Ən son bloglar</a>
+                <a href="{% url 'aboutus' %}">Haqqımızda</a>
+                <a href="{% url 'contact' %}">Əlaqə</a>
 
             </div>
 
         </div>
-        <hr>
         <div class="copyright">
-            <p>© Copyright <span>yemake.com</span> {% now "Y" as current_year %}{{ current_year }} </p>
+            <p>© Copyright <a href="{% url 'index' %}">yemake.com</a> {% now "Y" as current_year %}{{ current_year }} </p>
         </div>
     </footer>
     <!-------x-------Footer-----------x----- -->
@@ -186,6 +239,7 @@
 
    
    <!-----x------- Alertify Javascript-------x---->
+    <script src="https://cdn.lordicon.com/qjzruarw.js"></script>
     <script src='{% static '/js/main.js' %}?{% now "U" %}'></script>
 
 

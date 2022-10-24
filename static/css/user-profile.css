@@ -1,12 +1,3 @@
-
-
-.modal-image img{
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-
 #profile-image{
   cursor: pointer;
 }
@@ -15,7 +6,7 @@
   width: 100%;
   display: flex;
   justify-content: center;
-  border-bottom: 3px solid var(--water-green);
+  border-bottom: 3px solid var(--coffee);
   padding-bottom: 10px;
 }
 .profile .bottom-profile .top-buttons button {
@@ -26,7 +17,7 @@
   transition: 0.3s ease;
 }
 .profile .bottom-profile .top-buttons button:hover {
-  color: var(--carrot);
+  color: var(--light-green);
 }
 .profile .bottom-profile .empty {
   height: 100px;
@@ -41,18 +32,18 @@
   justify-content: space-between;
   align-items: center;
   padding-bottom: 10px;
-  border-bottom: 2px solid var(--water-green);
+  border-bottom: 2px solid var(--coffee);
   margin-bottom: 30px;
 }
 
 .bottom-profile button {
   width: 210px;
   height: 40px;
-  color: var(--water-green);
+  color: var(--coffee);
   background-color: transparent;
   font-size: 18px;
   outline: none;
 }
 button i{
-  color:  var(--water-green);
+  color:  var(--coffee);
 }

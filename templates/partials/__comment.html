@@ -1,12 +1,13 @@
 {% load static %}
 
-<div class="comment-body">
+<div class="comment-body"> {% if comment.owner == request.user.profile %}
     <div class="dots">
         <i class="fa-solid fa-ellipsis-vertical"></i>
     </div>
+   
      <div class="crud">
         <li class="delete-comment" data-id={{comment.id}}>Sil</li>
-    </div>
+    </div>{% endif %}
     <div class="img">
         {% if comment.owner.id == user.profile.id %}
         <a href="{% url 'profile' user.profile.slug %}"> <img src="{{comment.owner.profile_image.url}}"></div></a>

@@ -107,20 +107,79 @@ modal_func(delete_recipe,mdl,mdl_content,"delete-recipe")
 modal_func(delete_blog,mdl,mdl_content,"delete-blog")
 modal_func(delete_comment,mdl,mdl_content,"delete-comment")
 
-$('.notifications').click(function(){
-    document.querySelector(".dropdown-notification").classList.toggle("show-dropdown") 
+
+
+const nav = document.querySelector('nav');
+const navlinks=document.querySelector(".nav-links")
+
+window.addEventListener("scroll",()=>{
+    
+    if (window.scrollY >= 60) {  
+        nav.classList.add('sticky-nav');
+        navlinks.getElementsByClassName.top="50px"
+      } else {
+        nav.classList.remove('sticky-nav');    
+        navlinks.getElementsByClassName.top="60px"
+      }
 })
 
-if(Number($('.notification-count').html())>0){
+let hamburger=document.querySelector(".hamburger")
+hamburger.addEventListener("click",()=>{
+hamburger.classList.toggle("toggle")
+navlinks.classList.toggle("open")
+})
 
-$('.notification-bell').click(function(){
-    $.ajax(
-    {
-        type:"GET",
-        url: "/notification/isseen/",
-        success: function( data ) 
-        {
-           $('.notification-count').html(0)
-        }
-     })
-})}
+let profile=document.querySelector(".profile-nav")
+let dropdown=document.querySelector(".dropdown")
+profile.addEventListener("click",()=>{
+    dropdown.classList.toggle("display")
+})
+
+let bottom_profile=document.querySelector(".bottom-profile")
+
+bottom_profile.addEventListener("click",()=>{
+    dropdown.classList.toggle("transform")
+})
+
+
+console.log(window.innerWidth)
+
+if(window.innerWidth > 1026){
+    $('.notifications').click(function(){
+        document.querySelector(".dropdown-notification").classList.toggle("show-dropdown") 
+    })
+
+    if(Number($('.notification-count').html())>0){
+
+        $('.notification-bell').click(function(){
+            $.ajax(
+            {
+                type:"GET",
+                url: "/notification/isseen/",
+                success: function( data ) 
+                {
+                   $('.notification-count').html(0)
+                }
+             })
+        })}
+    
+}
+else{
+    $('.noti').click(function(){
+        document.querySelector(".dropdown-notification").classList.toggle("transform") 
+    })
+
+    if(Number($('.notification-count').html())>0){
+
+        $('.noti').click(function(){
+            $.ajax(
+            {
+                type:"GET",
+                url: "/notification/isseen/",
+                success: function( data ) 
+                {
+                   $('.notification-count').html(0)
+                }
+             })
+        })}
+}
