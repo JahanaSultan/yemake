@@ -477,6 +477,11 @@ nav {
   width: 100%;
   text-align: center;
 }
+.dropdown-notification li em {
+  color: var(--yellow);
+  font-size: 12px;
+  
+}
 
 .dropdown-notification a {
   display: block !important;
@@ -557,7 +562,7 @@ footer i:hover {
   color: var(--light-green);
 }
 
-h4 {
+footer h4 {
   margin: 20px !important;
   font-weight: 500;
 }

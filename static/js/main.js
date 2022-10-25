@@ -151,18 +151,24 @@ if(window.innerWidth > 1026){
 
     if(Number($('.notification-count').html())>0){
 
+        const ajaxfunc=(url)=>{
         $('.notification-bell').click(function(){
             $.ajax(
             {
                 type:"GET",
-                url: "/notification/isseen/",
+                url: url,
+                url:url,
                 success: function( data ) 
                 {
                    $('.notification-count').html(0)
                 }
              })
         })}
-    
+
+        ajaxfunc("/notification/isseen/")
+        ajaxfunc("/notification/isactiverecipeseen/")
+        ajaxfunc("/notification/isactiveblogseen/")
+    }
 }
 else{
     $('.noti').click(function(){

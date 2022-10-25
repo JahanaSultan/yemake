@@ -59,8 +59,8 @@
                         style="width:32px;height:32px">
                     </lord-icon>
                     <div class="count notification-count">
-                        {% if push.count < 10 %}
-                        {{push.count}}
+                        {% if not_count < 10 %}
+                        {{not_count}}
                         {% else %}
                         9+
                         {% endif %}
@@ -69,14 +69,28 @@
             </li>
             <div class="dropdown-notification ">
                 <ul>
-                    {% if push %}
+
+                    {% if push or active_recipe or active_blog %}
+                    {% for recipe in active_recipe %}
+                    <a href="{% url 'blogdetails' recipe.post.slug %}">
+                        <li><span>{{recipe.post.title}}</span> adlı reseptiniz artıq yayındadır. <em>{{recipe.date}}</em>
+                        </li>
+                        
+                    </a>
+                    {% endfor %}
+                    {% for blog in active_blog %}
+                    <a href="{% url 'blogdetails' blog.post.slug %}">
+                        <li><span>{{blog.post.title}}</span> adlı blogunuz artıq yayındadır. <em>{{blog.date}}</em>
+                        </li>
+                    </a>
+                    {% endfor %}
 
                     {% for notif in push %}
 
                     {% if notif.notification_type == 1 %}
 
                     <a href="{% url 'blogdetails' notif.post.slug %}">
-                        <li>@{{notif.sender}} adlı istifadəçi <span>{{notif.post.title}}</span> adlı reseptinizi bəyəndi
+                        <li>@{{notif.sender}} adlı istifadəçi <span>{{notif.post.title}}</span> adlı reseptinizi bəyəndi <em>{{notif.date}}</em>
                         </li>
                     </a>
 
@@ -84,17 +98,10 @@
 
                     <a href="{% url 'blogdetails' notif.post.slug %}">
                         <li>@{{notif.sender}} adlı istifadəçi <span>{{notif.post.title}}</span> adlı reseptinizə şərh
-                            yazdı.
+                            yazdı. <em>{{notif.date}}</em>
                         </li>
+                        
                     </a>
-
-                    {% elif notif.notification_type == 4 %}
-
-                    <a href="{% url 'blogdetails' notif.post.slug %}">
-                        <li><span>{{notif.post.title}}</span> adlı postunuz artıq yayındadır.
-                        </li>
-                    </a>
-
                     {% endif %}
 
                     {% endfor %}
@@ -196,7 +203,7 @@
             <div class="input">
                 <form class="subscribe" action="{% url 'subscribe' %}" method="POST">
                     {% csrf_token %}
-                    <h4>Her həftə yeni reseptlər emailinizə gəlsin:</h4>
+                    <h4>Hər həftə yeni reseptlər emailinizə gəlsin:</h4>
                     <input type="email" placeholder="Email" name="email">
                     <button>Abone Ol</button>
                 </form>
@@ -236,15 +243,15 @@
     <script src="https://cdn.lordicon.com/qjzruarw.js"></script>
     <script src='{% static '/js/main.js' %}?{% now "U" %}'></script>
 
+  
+    <script type="text/javascript">
 
-    <script>
+      {% for message in messages %}
 
-        //Alertify messages
-
-        {% for message in messages %}
         alertify.set('notifier', 'position', 'top-center');
-        alertify.{ { message.tags } } ('{{message}}');
-        {% endfor %}
+        alertify.{{ message.tags }} ('{{message}}');
+    
+      {% endfor %}
 
     </script>
     {% block js %}{% endblock js %}

@@ -1,9 +1,9 @@
 
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save, post_delete
-from notification.models import Notification
+from notification.models import ActiveRecipe, Notification
 from recipes.models import Vote,Review, Blog
-from users.models import Profile
+
 
 def user_liked_post(sender, instance, *args, **kwargs):
         like=instance
@@ -30,9 +30,9 @@ def user_delete_comment_post(sender, instance, *args, **kwargs):
 
 def is_active_recipe(sender, instance, *args, **kwargs):
         recipe=instance
-        admin=Profile.objects.get(username="jahanasultan")
+        admin=User.objects.get(is_superuser=True)
         if recipe.isActive:
-                notify=Notification(post=recipe, sender=admin,user=recipe.owner, notification_type=4)
+                notify=ActiveRecipe(post=recipe, sender=admin, user=recipe.owner)
                 notify.save()
 
 

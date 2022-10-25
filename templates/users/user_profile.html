@@ -29,8 +29,8 @@
     <div class="prf-image"><img src="{{profile.profile_image.url}}" alt=""></div>
   </div>
   <div class="profile-name">
-    <h1>Jahana Sultan</h1>
-    <small>@jahanasultan</small>
+    <h1>{{profile.name}}</h1>
+    <small>@{{profile.username}}</small>
     <div class="user-count box">
       <a href="#recipes">
         <div class="count-box">
@@ -50,7 +50,7 @@
       </div>
     </div>
     <div class="line"></div>
-    <p>I am very good cooker</p>
+    <p>{{profile.short_info}}</p>
     {% if user.is_superuser %}
     <a href="{% url 'newsletter' %}" class="btn-news" type="button">
       NewsLetter
