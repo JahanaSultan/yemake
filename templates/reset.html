@@ -11,21 +11,23 @@
 <div class="form">
     <div class="page">
 
-<h1>Yeni parolu daxil edin</h1>
-<br>
-<br>
-<p>Yeni parolu iki dəfə daxil edin ki, səhv etmədiyinizə əmin olaq.</p>
+        <h1>Yeni parolu daxil edin</h1>
+        <br>
+        <br>
+        <p>Yeni parolu iki dəfə daxil edin ki, səhv etmədiyinizə əmin olaq.</p>
 
-<form method="POST">
-    {% csrf_token %}
-    {{form.as_p}}
-    <div class="submit">
-    <input type="submit" value="Mənim Şifrəmi Dəyiş"></div>
-</form>
-<div class="submit">
-<input type="checkbox" id="show" >
-<label for="show">Parolu Göstər</label></div>
-</div>
+        <form method="POST">
+            {% csrf_token %}
+            {{form.as_p}}
+            <div class="submit">
+                <input type="submit" value="Mənim Şifrəmi Dəyiş">
+            </div>
+        </form>
+        <div class="submit">
+            <input type="checkbox" id="show">
+            <label for="show">Parolu Göstər</label>
+        </div>
+    </div>
 </div>
 
 {% endblock content %}
@@ -35,18 +37,19 @@
 
     //SHOW PASSWORD
 
-let password=[...document.querySelectorAll("input[type='password']")]
-let show=document.querySelector("input[type='checkbox']")
+    let password = [...document.querySelectorAll("input[type='password']")]
+    let show = document.querySelector("input[type='checkbox']")
 
-show.addEventListener("click",()=>{
-        password.map(e=>{
-            if(show.checked){
-            e.setAttribute("type","text")}
-            else{
-            e.setAttribute("type", "password")
-             }
+    show.addEventListener("click", () => {
+        password.map(e => {
+            if (show.checked) {
+                e.setAttribute("type", "text")
+            }
+            else {
+                e.setAttribute("type", "password")
+            }
         })
-})
+    })
 
 </script>
 {% endblock js %}

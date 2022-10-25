@@ -1,35 +1,39 @@
 <div class="post-card">
-   
-    {% if blog.owner.id == user.profile.id %} 
+
+    {% if blog.owner.id == user.profile.id %}
     <div class="dots">
         <i class="fa-solid fa-ellipsis-vertical"></i>
     </div>
-     <div class="crud">
-        <a href="{% url 'update' blog.id %}"><li>Düzəliş et</li></a>
+    <div class="crud">
+        <a href="{% url 'update' blog.id %}">
+            <li>Düzəliş et</li>
+        </a>
         <li class="delete-recipe" data-id={{blog.id}}>Sil</li>
     </div>
     {% else %}
     {% endif %}
-   
+
     <div class="img">
 
         {% if blog.youtube_link %}
-         <div class="play"><i class="fa-solid fa-play"></i></div>
+        <div class="play"><i class="fa-solid fa-play"></i></div>
         {% endif %}
 
-         
+
         <img src="{{blog.image.url}}" alt="">
         <div class="heart">
-        
-        {% comment %} <i class="fa-regular fa-bookmark"></i>  {% endcomment %}
-        {% comment %} <i class="fa-solid fa-bookmark"></i>  {% endcomment %}
-       
+
+            {% comment %} <i class="fa-regular fa-bookmark"></i> {% endcomment %}
+            {% comment %} <i class="fa-solid fa-bookmark"></i> {% endcomment %}
+
         </div>
     </div>
     <div class="category">
-        <a href="{% url 'recipe-category' blog.category.slug %}"><div class="post-category">
-            <p>{{blog.category.title}}</p>
-        </div></a>
+        <a href="{% url 'recipe-category' blog.category.slug %}">
+            <div class="post-category">
+                <p>{{blog.category.title}}</p>
+            </div>
+        </a>
         <div class="time-cook"><i class="fa-regular fa-clock"></i> {{blog.cook_time}} {{blog.time}}</div>
         {% if blog.isActive %}
         {% else %}
@@ -42,20 +46,22 @@
             <h4>{{blog.title | truncatechars:50}}</h4>
         </a>
     </div>
-  
- 
-  <a href="{% if blog.owner.id == user.profile.id %} {% url 'profile' user.profile.slug %} {% else %} {% url 'Account' blog.owner.slug %} {% endif %}" class="profile">
-    <div class="profile">
-        <div class="profile-photo">
-            {% if blog.owner.profile_image %}
-            <img src="{{blog.owner.profile_image.url}}" alt="">
-            {% endif %}</div>
-        <div class="name-date">
-            <p class="name">{{blog.owner.name}}</p>
-            <p class="date">{{blog.created}}</p>
-        </div>
-    </div>
-</a>
 
-  
+
+    <a href="{% if blog.owner.id == user.profile.id %} {% url 'profile' user.profile.slug %} {% else %} {% url 'Account' blog.owner.slug %} {% endif %}"
+        class="profile">
+        <div class="profile">
+            <div class="profile-photo">
+                {% if blog.owner.profile_image %}
+                <img src="{{blog.owner.profile_image.url}}" alt="">
+                {% endif %}
+            </div>
+            <div class="name-date">
+                <p class="name">{{blog.owner.name}}</p>
+                <p class="date">{{blog.created}}</p>
+            </div>
+        </div>
+    </a>
+
+
 </div>

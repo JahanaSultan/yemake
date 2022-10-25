@@ -2,8 +2,10 @@
     <div class="img">
         <img src="{{category.image.url}}" alt="">
     </div>
-    <a href="{% url 'recipe-category' category.slug %}"><div class="title">
-         <p>{{category.title}}</p>
-        <span>({{category.blog_set.all|length}} resept)</span>
-    </div></a>
+    <a href="{% url 'recipe-category' category.slug %}">
+        <div class="title">
+            <p>{{category.title}}</p>
+            <span>({{category.blog_set.all|length}} resept)</span>
+        </div>
+    </a>
 </div>

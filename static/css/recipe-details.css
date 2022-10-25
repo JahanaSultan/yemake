@@ -10,7 +10,7 @@
   margin-top: 20px;
 }
 
-img {
+.details > img {
   width: 100%;
   height: 500px;
   border-radius: 20px;
@@ -138,10 +138,11 @@ i.fa-solid.fa-bookmark{
   height: 100px;
   border: 1px solid var(--yellow);
   outline: 0;
-  font-size: 20px;
+  font-size: 18px;
+  padding: 5px!important;
 }
 .comment textarea:focus{
-  border: 3px solid var(--yellow);
+  border: 1.5px solid var(--yellow);
 }
 .submit-btn button{
   width: 150px;
@@ -153,12 +154,9 @@ i.fa-solid.fa-bookmark{
   margin-top: 10px;
   transition: 0.3s ease;
 }
-/* input[type="submit"]:hover{
-  background-color: transparent;
-  color:var(--yellow);
-} */
+
 .submit-btn{
-  width: 100%;
+  width: calc(100% - 60px);
   display: flex;
   flex-direction: column;
   margin-bottom: 20px;
@@ -170,12 +168,11 @@ i.fa-solid.fa-bookmark{
   height: 60px;
   border-radius: 50%;
   margin-right: 10px;
+  object-fit: cover!important;
 }
-h1.add-comment{
+
+h2.add-comment{
   text-align: center;
-  font-weight: 700;
-  font-size: 30px;
-  margin: 20px 0;
 }
 .comment-body{
  display:flex;
@@ -191,9 +188,9 @@ position: relative;
   overflow: hidden;
 }
 .comment-body .img img{
-  width: 100%;
-  height: 100%;
+  object-fit: cover;
 }
+
 .comment-body .comment-content{
   width: calc(100% - 60px);
   padding-left: 10px;
@@ -201,10 +198,7 @@ position: relative;
 .comment-body .comment-content small{
   color: var(--yellow);
 }
-.comment-body .comment-content h3{
-font-weight: 700;
-color: var(--dark-green);
-}
+
 .comment-body .comment-content p{
   font-size: 14px;
   text-align: justify;
@@ -224,4 +218,36 @@ p.time-created{
 }
 .dots i{
  color:  rgba(0, 0, 0, 0.571)!important;
+}
+
+.video{
+  width: 100%;
+}
+
+@media screen and (max-width:964px) {
+  .other-posts{
+    display: none;
+  }
+  .details{
+    width: 100%;
+  }
+  .detail .top i{
+    font-size: 20px;
+  }
+  .detail .top button{
+
+    font-size: 14px;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+  }
+ 
+}
+@media screen and (max-width:768px) {
+   .details > img{
+    height: 300px;
+  }
+}
+@media screen and (max-width:500px) {
+  
 }

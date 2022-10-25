@@ -4,26 +4,35 @@
     <div class="dots">
         <i class="fa-solid fa-ellipsis-vertical"></i>
     </div>
-   
-     <div class="crud">
+
+    <div class="crud">
         <li class="delete-comment" data-id={{comment.id}}>Sil</li>
     </div>{% endif %}
     <div class="img">
         {% if comment.owner.id == user.profile.id %}
-        <a href="{% url 'profile' user.profile.slug %}"> <img src="{{comment.owner.profile_image.url}}"></div></a>
-        {% else %}
-        <a href="{% url 'Account' comment.owner.slug %}"> <img src="{{comment.owner.profile_image.url}}"></div></a>
-        {% endif %}
-    <div class="comment-content">
-        {% if comment.owner.id == user.profile.id %}
-        <a href="{% url 'profile' user.profile.slug %}"><div class="comment-owner"><h3>{{comment.owner.name}}</h3>
-        <small>@{{comment.owner.username}}</small> </div></a>
-        {% else %}
-        <a href="{% url 'Account' comment.owner.slug %}"><div class="comment-owner"><h3>{{comment.owner.name}}</h3>
-            <small>@{{comment.owner.username}}</small> </div></a>
-        {% endif %}
-        <p class="time-created">{{comment.created}}</p>
-        <p class="comment-text">{{comment.body|linebreaksbr}}</p>
-    </div>
+        <a href="{% url 'profile' user.profile.slug %}"> <img src="{{comment.owner.profile_image.url}}">
+    </div></a>
+    {% else %}
+    <a href="{% url 'Account' comment.owner.slug %}"> <img src="{{comment.owner.profile_image.url}}">
+</div></a>
+{% endif %}
+<div class="comment-content">
+    {% if comment.owner.id == user.profile.id %}
+    <a href="{% url 'profile' user.profile.slug %}">
+        <div class="comment-owner">
+            <h3>{{comment.owner.name}}</h3>
+            <small>@{{comment.owner.username}}</small>
+        </div>
+    </a>
+    {% else %}
+    <a href="{% url 'Account' comment.owner.slug %}">
+        <div class="comment-owner">
+            <h3>{{comment.owner.name}}</h3>
+            <small>@{{comment.owner.username}}</small>
+        </div>
+    </a>
+    {% endif %}
+    <p class="time-created">{{comment.created}}</p>
+    <p class="comment-text">{{comment.body|linebreaksbr}}</p>
 </div>
-
+</div>

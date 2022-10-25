@@ -11,27 +11,27 @@
 {% block content %}
 <h3 class='title'>Reseptlər</h3>
 <div class="cards padding-x">
-{% if blog %}
- {% for blog in blog  %}
- {% if blog.isActive %}
+    {% if blog %}
+    {% for blog in blog  %}
+    {% if blog.isActive %}
 
-     <div class="card">
-    {% include 'partials/__recipecard.html' %}
-    </div> 
- {% endif %}
+    <div class="card">
+        {% include 'partials/__recipecard.html' %}
+    </div>
+    {% endif %}
     {% endfor %}
-{% else %}
-<div class="notfound">
-<p><i class="fa-solid fa-magnifying-glass"></i></p>
-<h1>Nəticə Tapılmadı!</h1>
-<a href="{% url 'index' %}" class="back">Ana Səhifəyə Qayıt</a></div>
-{% endif %}
+    {% else %}
+    <div class="notfound">
+        <p><i class="fa-solid fa-magnifying-glass"></i></p>
+        <h1>Nəticə Tapılmadı!</h1>
+        <a href="{% url 'index' %}" class="back">Ana Səhifəyə Qayıt</a>
+    </div>
+    {% endif %}
 
 
-   
+
 
 </div>
 {% include "partials/__paginations.html" %}
 
 {% endblock  %}
-

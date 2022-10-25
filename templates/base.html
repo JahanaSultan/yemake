@@ -14,11 +14,11 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://unpkg.com/pattern.css" rel="stylesheet">
     <!---------------- Alertify CSS ---------------->
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css"/>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css" />
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css" />
     <!-------x-------- Alertify CSS --------x------->
-    <link rel="stylesheet" href='{% static '/css/style.css' %}?{% now "U" %}'> 
-    
+    <link rel="stylesheet" href='{% static '/css/style.css' %}?{% now "U" %}'>
+
     {% block css %}{% endblock  %}
     {% block title %}<title>Ana Səhifə</title>{% endblock  %}
 </head>
@@ -35,11 +35,11 @@
 <body class="bg">
     <!---------------Navigation--------------->
     <nav class="padding-x">
-            <div class="logo">
-        <a href="{% url 'index' %}">
-          YeMake.com
-        </a>
-    </div>
+        <div class="logo">
+            <a href="{% url 'index' %}">
+                YeMake.com
+            </a>
+        </div>
         <div class="hamburger">
             <div class="line1"></div>
             <div class="line2"></div>
@@ -53,22 +53,19 @@
             <li><a href="{% url 'contact' %}">Əlaqə</a></li>
             {% if request.user.is_authenticated  %}
             <li class="notification-bell">
-               
-               <div class="notifications">
-                <lord-icon
-                src="https://cdn.lordicon.com/psnhyobz.json"
-                trigger="hover"
-                colors="primary:#ffba00"
-                style="width:32px;height:32px">
-            </lord-icon>
-                   <div class="count notification-count">
-                    {% if push.count < 10 %}
-                    {{push.count}}
-                    {% else %}
-                       9+
-                    {% endif %}
+
+                <div class="notifications">
+                    <lord-icon src="https://cdn.lordicon.com/psnhyobz.json" trigger="hover" colors="primary:#ffba00"
+                        style="width:32px;height:32px">
+                    </lord-icon>
+                    <div class="count notification-count">
+                        {% if push.count < 10 %}
+                        {{push.count}}
+                        {% else %}
+                        9+
+                        {% endif %}
+                    </div>
                 </div>
-               </div>
             </li>
             <div class="dropdown-notification ">
                 <ul>
@@ -86,7 +83,8 @@
                     {% elif notif.notification_type == 2 %}
 
                     <a href="{% url 'blogdetails' notif.post.slug %}">
-                        <li>@{{notif.sender}} adlı istifadəçi <span>{{notif.post.title}}</span> adlı reseptinizə şərh yazdı.
+                        <li>@{{notif.sender}} adlı istifadəçi <span>{{notif.post.title}}</span> adlı reseptinizə şərh
+                            yazdı.
                         </li>
                     </a>
 
@@ -100,89 +98,82 @@
                     {% endif %}
 
                     {% endfor %}
-                    
+
                     {% else %}
                     <li>Yeni bildiriş yoxdur!</li>
                     {% endif %}
                 </ul>
-               </div>
-                <li class="profile-nav">
-                    <div class="profile-go">
-                        {% if user.profile.profile_image %}
-                        <img src="{{user.profile.profile_image.url}}" alt="">
-                        {% else %}
-            <img src="{% static 'image/user-default.jpg' %}" alt="">
-                        {% endif %}
-                         <p>{{user.profile.name}}</p></div> 
-                   
-                </li>
-                <div class="dropdown">
-                    <ul>
-                       <a href="{% url 'profile' user.profile.slug %}">
-                        <li>
-                            <lord-icon
-                                src="https://cdn.lordicon.com/hbvyhtse.json"
-                                trigger="hover"
-                                colors="primary:#fff"
-                                style="width:32px;height:32px">
-                            </lord-icon> Profil</li>
-                       </a>
-                       <a href="{% url 'edit-account' %}">
-                         <li>
-
-                        <lord-icon
-                            src="https://cdn.lordicon.com/hwuyodym.json"
-                            trigger="hover"
-                            colors="primary:#fff"
-                            style="width:32px;height:32px">
-                        </lord-icon> 
-Tənzimləmələr</li>
-                       </a><a href="{% url 'signout' %}">
-                        <li><lord-icon
-                            src="https://cdn.lordicon.com/nhfyhmlt.json"
-                            trigger="hover"
-                            colors="primary:#fff"
-                            style="width:32px;height:32px">
-                        </lord-icon> Çıxış</li>
-                       </a>
-                    </ul>
+            </div>
+            <li class="profile-nav">
+                <div class="profile-go">
+                    {% if user.profile.profile_image %}
+                    <img src="{{user.profile.profile_image.url}}" alt="">
+                    {% else %}
+                    <img src="{% static 'image/user-default.jpg' %}" alt="">
+                    {% endif %}
+                    <p>{{user.profile.name}}</p>
                 </div>
-            
+
+            </li>
+            <div class="dropdown">
+                <ul>
+                    <a href="{% url 'profile' user.profile.slug %}">
+                        <li>
+                            <lord-icon src="https://cdn.lordicon.com/hbvyhtse.json" trigger="hover"
+                                colors="primary:#fff" style="width:32px;height:32px">
+                            </lord-icon> Profil
+                        </li>
+                    </a>
+                    <a href="{% url 'edit-account' %}">
+                        <li>
+
+                            <lord-icon src="https://cdn.lordicon.com/hwuyodym.json" trigger="hover"
+                                colors="primary:#fff" style="width:32px;height:32px">
+                            </lord-icon>
+                            Tənzimləmələr
+                        </li>
+                    </a><a href="{% url 'signout' %}">
+                        <li>
+                            <lord-icon src="https://cdn.lordicon.com/nhfyhmlt.json" trigger="hover"
+                                colors="primary:#fff" style="width:32px;height:32px">
+                            </lord-icon> Çıxış
+                        </li>
+                    </a>
+                </ul>
+            </div>
+
             {% else %}
             <a href="{% url 'signin' %}">
-                <li><button class="join-button" >Giriş Et</button></li>
+                <li><button class="join-button">Giriş Et</button></li>
             </a>
-            
+
             {% endif %}
-            
+
         </ul>
     </nav>
-{% if request.user.is_authenticated %}
+    {% if request.user.is_authenticated %}
     <div class="mobile-bottom padding-x">
         <div class="bottom-box bottom-profile">
             <div class="profile-go">
-            <img src="{{user.profile.profile_image.url}}" alt="">
-             <p>{{user.profile.name}}</p>
-            </div> 
-        </div>  
-    
-<div class="noti bottom-box">
-            <div class="notifications ">
-             <lord-icon
-             src="https://cdn.lordicon.com/psnhyobz.json"
-             trigger="hover"
-             colors="primary:#ffba00"
-             style="width:30px;height:30px">
-         </lord-icon>
-                <div class="count notification-count">
-                 {% if push.count < 10 %}
-                 {{push.count}}
-                 {% else %}
-                    9+
-                 {% endif %}
-             </div>
+                <img src="{{user.profile.profile_image.url}}" alt="">
+                <p>{{user.profile.name}}</p>
             </div>
-</div>
+        </div>
+
+        <div class="noti bottom-box">
+            <div class="notifications ">
+                <lord-icon src="https://cdn.lordicon.com/psnhyobz.json" trigger="hover" colors="primary:#ffba00"
+                    style="width:30px;height:30px">
+                </lord-icon>
+                <div class="count notification-count">
+                    {% if push.count < 10 %}
+                    {{push.count}}
+                    {% else %}
+                    9+
+                    {% endif %}
+                </div>
+            </div>
+        </div>
 
     </div>
     {% endif %}
@@ -190,9 +181,9 @@ Tənzimləmələr</li>
 
 
     {% block content %}
-     {% endblock  %}
+    {% endblock  %}
 
-  
+
     <!-- -------------Footer------------------->
     <footer>
         <div class="footer">
@@ -212,9 +203,9 @@ Tənzimləmələr</li>
                 <div class="search">
                     <h4>Axtarmaq istədiyiniz kəliməni yazın:</h4>
                     <form action="{% url 'recipes' %}" method="get" id="searchForm">
-                    <input type='text' id="search" class="searchbar" placeholder="Axtar" name="search_query" />
-                    <button type="submit" id="searchbarsubmit">Axtar</button>
-                </form>
+                        <input type='text' id="search" class="searchbar" placeholder="Axtar" name="search_query" />
+                        <button type="submit" id="searchbarsubmit">Axtar</button>
+                    </form>
                 </div>
             </div>
             <div class="footer-nav">
@@ -227,35 +218,38 @@ Tənzimləmələr</li>
 
         </div>
         <div class="copyright">
-            <p>© Copyright <a href="{% url 'index' %}">yemake.com</a> {% now "Y" as current_year %}{{ current_year }} </p>
+            <p>© Copyright <a href="{% url 'index' %}">yemake.com</a> {% now "Y" as current_year %}{{ current_year }}
+            </p>
         </div>
     </footer>
     <!-------x-------Footer-----------x----- -->
 
     <!---------------JS links--------------->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> 
-   <!------------- Alertify Javascript------------>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"
+        integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!------------- Alertify Javascript------------>
     <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
 
-   
-   <!-----x------- Alertify Javascript-------x---->
+
+    <!-----x------- Alertify Javascript-------x---->
     <script src="https://cdn.lordicon.com/qjzruarw.js"></script>
     <script src='{% static '/js/main.js' %}?{% now "U" %}'></script>
 
 
     <script>
 
-            //Alertify messages
+        //Alertify messages
 
-            {% for message in messages %}
-            alertify.set('notifier','position', 'top-center');
-            alertify.{{message.tags}}('{{message}}');
-            {% endfor %}
+        {% for message in messages %}
+        alertify.set('notifier', 'position', 'top-center');
+        alertify.{ { message.tags } } ('{{message}}');
+        {% endfor %}
 
     </script>
     {% block js %}{% endblock js %}
-   
-   
+
+
     <!-------x-------JS links-------x------->
 
 </body>

@@ -1,20 +1,23 @@
-<div class="pagination"> 
+<div class="pagination">
 
-    {% if blog.has_previous %}
-            <a href="?page={{ blog.previous_page_number }}{% if search_query %}&search_query={{ search_query }}{% endif %}" data-page="{{ blog.previous_page_number}}"><i class="fa-solid fa-angles-left"></i></a>
-        {% endif %}
-   {% for page in custom_range %}
-  
-   {% if page == blog.number %}
-   <a href="?page={{ page }}{% if search_query %}&search_query={{ search_query }}{% endif %}" class="active page-link" data-page="{{page}}">{{page}}</a>
-   {% else %}
-   <a href="?page={{ page }}{% if search_query %}&search_query={{ search_query }}{% endif %}" class="page-link"  data-page="{{page}}">{{page}}</a>
-   {% endif %}
-   
-   {% endfor %}
-   {% if blog.has_next %}
-   <a href="?page={{ blog.next_page_number }}{% if search_query %}&search_query={{ search_query }}{% endif %}" data-page="{{ blog.next_page_number}}"><i class="fa-solid fa-angles-right"></i></a>
-{% endif %}
+  {% if blog.has_previous %}
+  <a href="?page={{ blog.previous_page_number }}{% if search_query %}&search_query={{ search_query }}{% endif %}"
+    data-page="{{ blog.previous_page_number}}"><i class="fa-solid fa-angles-left"></i></a>
+  {% endif %}
+  {% for page in custom_range %}
 
-  </div>
+  {% if page == blog.number %}
+  <a href="?page={{ page }}{% if search_query %}&search_query={{ search_query }}{% endif %}" class="active page-link"
+    data-page="{{page}}">{{page}}</a>
+  {% else %}
+  <a href="?page={{ page }}{% if search_query %}&search_query={{ search_query }}{% endif %}" class="page-link"
+    data-page="{{page}}">{{page}}</a>
+  {% endif %}
 
+  {% endfor %}
+  {% if blog.has_next %}
+  <a href="?page={{ blog.next_page_number }}{% if search_query %}&search_query={{ search_query }}{% endif %}"
+    data-page="{{ blog.next_page_number}}"><i class="fa-solid fa-angles-right"></i></a>
+  {% endif %}
+
+</div>

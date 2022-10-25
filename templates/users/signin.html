@@ -21,7 +21,7 @@
       {% for field in form %}
       <label for="formInput#text">{{field.label}}</label>
       <div class="{% if field.errors %}error-div{% else %}input-div{% endif %}">
-      {{field}}
+        {{field}}
       </div>
       {% comment %} {% if field.help_text %}
       <small>{{field.help_text}}</small><br>
@@ -46,7 +46,7 @@
 
 {% else %}
 
-{% comment %} GİRİŞ ET SƏHİFƏSİ {% endcomment %}
+<!-- GİRİŞ ET SƏHİFƏSİ -->
 
 <section>
   <div class="container">
@@ -67,9 +67,9 @@
         <input type="text" placeholder="İstifadəçi Adı" name="username" />
         <input type="password" placeholder="Şifrə" name="password" />
         <div class="card-footer">
-        <input type="submit" value="Giriş Et" />
-        <a href="{% url 'reset_password' %}">Şifrəni Unutdun?</a>
-       </div>
+          <input type="submit" value="Giriş Et" />
+          <a href="{% url 'reset_password' %}">Şifrəni Unutdun?</a>
+        </div>
         <p class="signup">
           Hesabın yoxdur? <a href="{% url 'signup' %}">Qeydiyyatdan Keç</a>
         </p>

@@ -16,81 +16,50 @@
 {% block content %}
 <h3 class="title">Profilini Tənzimlə</h3>
 <div class="profile-form">
-    <div class="form">
+  <div class="form">
 
-  <form action="{% url 'edit-account' %}" method='POST' enctype="multipart/form-data">
-        {% csrf_token %}
-        <div class="profile-relative-div">
-            <div class="cvr-img">
-                <img src="" alt="cover-photo" id="cvr-img">
-                <label for="id_cover_image"><i class="fa-regular fa-pen-to-square"></i></label>
-                <div class="hide">{{form.cover_image}}</div>
-            </div>
-            <div class="prf-img"> 
-                <img src="" alt="profile-photo" id="prf-img"> 
-                <label for="id_profile_image">Profil Şəklini Dəyiş</label>
-                <div class="hide">{{form.profile_image}}</div>
-            </div>
+    <form action="{% url 'edit-account' %}" method='POST' enctype="multipart/form-data">
+      {% csrf_token %}
+      <div class="profile-relative-div">
+        <div class="cvr-img">
+          <img src="" alt="cover-photo" id="cvr-img">
+          <label for="id_cover_image"><i class="fa-regular fa-pen-to-square"></i></label>
+          <div class="hide">{{form.cover_image}}</div>
         </div>
-       
+        <div class="prf-img">
+          <img src="" alt="profile-photo" id="prf-img">
+          <label for="id_profile_image">Profil Şəklini Dəyiş</label>
+          <div class="hide">{{form.profile_image}}</div>
+        </div>
+      </div>
 
-<div class="field"> 
-    <label for="id_name">{{form.name.label}}</label>
-    {{form.name}}
-    <label for="id_username">{{form.username.label}}</label>
-    {{form.username}}
-    <label for="id_short_info">{{form.short_info.label}}</label>
-    {{form.short_info}}
-    
+
+      <div class="field">
+        <label for="id_name">{{form.name.label}}</label>
+        {{form.name}}
+        <label for="id_username">{{form.username.label}}</label>
+        {{form.username}}
+        <label for="id_short_info">{{form.short_info.label}}</label>
+        {{form.short_info}}
+      </div>
+
+      {% for error in field.errors %}
+      <p class="error">{{error}}</p>
+      {% endfor %}
+
+      <div class="flex justify-center">
+        <button type="submit"
+          class="text-white  focus:outline-none  font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Təsdiqlə</button>
+      </div>
+    </form>
+  </div>
+
 </div>
-
-{% for error in field.errors %}
-<p class="error">{{error}}</p>
-{% endfor %}
-
-<div class="flex justify-center">
-    <button type="submit" class="text-white  focus:outline-none  font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Təsdiqlə</button></div>
-</form>
-</div> 
-
-</div>
-
-
-
-
-
-
 
 {% endblock content %}
 
 {% block js %}
 
-<!-- PREVIEW IMAGE -->
-
-<script>
-
-let preview_prf=document.getElementById("prf-img")
-let preview_cvr=document.getElementById("cvr-img")
-let file_input_profile=document.querySelector(".prf-img input[type='file']")
-let file_input_cover=document.querySelector(".cvr-img input[type='file']")
-let link_prf=document.querySelector(".prf-img .hide a")
-let link_cvr=document.querySelector(".cvr-img .hide a")
-file_input_profile.addEventListener("change",()=>{
-  preview_prf.src=window.URL.createObjectURL(file_input_profile.files[0])
-})
-file_input_cover.addEventListener("change",()=>{
-  preview_cvr.src=window.URL.createObjectURL(file_input_cover.files[0])
-})
-
-if(link_prf){
-  preview_prf.src=link_prf.href
-}
-if(link_cvr){
-  preview_cvr.src=link_cvr.href
-}
-let input=[...document.querySelectorAll(".field input")]
-
-input.map(e=>e.classList.add("contact-input"))
-</script>
+<script src='{% static '/js/profile_form.js' %}?{% now "U" %}'></script>
 
 {% endblock js %}

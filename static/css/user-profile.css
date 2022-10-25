@@ -1,4 +1,4 @@
-#profile-image{
+#profile-image {
   cursor: pointer;
 }
 
@@ -9,6 +9,7 @@
   border-bottom: 3px solid var(--coffee);
   padding-bottom: 10px;
 }
+
 .profile .bottom-profile .top-buttons button {
   border: 3px solid transparent;
   background-color: transparent;
@@ -16,9 +17,11 @@
   margin: 0 20px;
   transition: 0.3s ease;
 }
+
 .profile .bottom-profile .top-buttons button:hover {
   color: var(--light-green);
 }
+
 .profile .bottom-profile .empty {
   height: 100px;
   display: flex;
@@ -34,16 +37,126 @@
   padding-bottom: 10px;
   border-bottom: 2px solid var(--coffee);
   margin-bottom: 30px;
+  margin-top: 50px;
 }
 
-.bottom-profile button {
-  width: 210px;
-  height: 40px;
-  color: var(--coffee);
-  background-color: transparent;
-  font-size: 18px;
-  outline: none;
+.underline-div p{
+font-size: 18px;
+font-weight: 400;
 }
-button i{
-  color:  var(--coffee);
+
+.bottom-profile a.btn {
+  color: var(--coffee);
+ font-size: 18px;
+}
+.bottom-profile .cards h2{
+  width: 100%;
+  text-align: center;
+  margin: 50px 0;
+}
+
+a.btn i {
+  color: var(--coffee);
+}
+
+
+
+.background {
+  position: relative;
+  width: 100%;
+}
+
+.background .bg-img {
+  height: 200px;
+  position: relative;
+}
+
+
+
+.background .bg-img::after {
+  content: "";
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.377);
+}
+
+.all-datas {
+  width: 100%;
+  background-color: #fff;
+  border-radius: 20px;
+}
+
+.all-datas .top-datas {
+  display: flex;
+  height: 100px;
+}
+
+
+.all-datas .profile-image {
+  width: 100%;
+  height: 75px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.all-datas .profile-image .prf-image {
+  width: 150px;
+  height: 150px;
+  overflow: hidden;
+  border-radius: 50%;
+  margin-top: -75px;
+  z-index: 100;
+}
+
+.all-datas .user-count {
+  margin: 10px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  text-align: center;
+}
+
+.all-datas .user-count .count-box {
+  margin: 0 20px;
+}
+
+.all-datas .user-count .count-box h3
+{
+  color: var(--dark-grey);
+}
+.all-datas .profile-name .line{
+  width: 40%;
+  height: 1px;
+  border-radius: 100vmax;
+  margin: 20px 0;
+  background-color: var(--coffee);
+}
+.all-datas .profile-name {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.all-datas .profile-name small{
+  margin: 10px;
+  color: var(--yellow);
+  font-size: 20px;
+  font-style: italic;
+}
+
+.btn-news{
+  width: 200px;
+  height: 40px;
+  border: 0;
+  background-color: var(--yellow);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  border-radius: 20px;
+  margin-top: 30px;
 }

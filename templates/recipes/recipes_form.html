@@ -1,55 +1,34 @@
-{% extends 'base.html' %} 
+{% extends 'base.html' %}
 {% load static %}
 {% block css %}
 <link rel="stylesheet" href='{% static '/css/form.css' %}?{% now "U" %}'>
 {% endblock css %}
-{% block content %} 
+{% block content %}
 
 
 
 <div class="form">
     <div class="page">
 
-<!--Resept update etmek ucun form -->
+        <!--Resept update etmek ucun form -->
 
+        {% if page == "update" %}
+        <h1>Reseptə Düzəliş et</h1>
 
-{% if page == "update" %}
-<h1>Reseptə Düzəliş et</h1>
+        {% include "partials/__create_blog.html" %}
 
-{% include "partials/__create_blog.html" %}
+        <!-- Resept yaratmaq ucun form -->
 
-
-
-<!-- Resept yaratmaq ucun form -->
-
-
-{% else %}
-<h1>Resept Yaz</h1>
-{% include "partials/__create_blog.html" %}
-{% endif %} 
-</div></div>
+        {% else %}
+        <h1>Resept Yaz</h1>
+        {% include "partials/__create_blog.html" %}
+        {% endif %}
+    </div>
+</div>
 {% endblock content %}
 
 {% block js %}
 
-<!-- PREVIEW IMAGE -->
-
-<script>
-
-let preview=document.getElementById("preview")
-let file_input=document.querySelector("input[type='file']")
-let link=document.querySelector("form p a")
-
-file_input.addEventListener("change",()=>{
-  preview.style.display="inline-block"
-  preview.src=window.URL.createObjectURL(file_input.files[0])
-})
-
-if(link.href){
-  preview.style.display="block"
-  preview.src=link.href
-}
-
-</script>
+<script src='{% static '/js/preview.js' %}?{% now "U" %}'></script>
 
 {% endblock js %}
