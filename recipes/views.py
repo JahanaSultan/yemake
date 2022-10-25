@@ -1,12 +1,11 @@
 from django.shortcuts import render,  redirect
 from .models import Blog, Review, Vote, RecipeBook
-from .forms import RecipeForm, ReviewForm
+from .forms import RecipeForm
 from django.contrib.auth.decorators import login_required
 from .utils import searchRecipe, Paginations
 from django.db.models import Q
 from django.contrib import messages
 from users.models import Profile
-from django.utils.datastructures import MultiValueDictKeyError
 
 
 
@@ -28,6 +27,32 @@ def category_filter(request, slug):
 
 
 
+def video_filter(request):
+    video=Blog.objects.filter(youtube_link__isnull=False)
+    if video:
+        blogs, custom_range=Paginations(request, video)
+    else:
+        blogs=""
+        custom_range=""
+    context={
+        "blog":blogs,
+        "custom_range":custom_range
+    }
+    return render(request, "recipes/recipes.html",context)
+
+
+def time_filter(request):
+    time=Blog.objects.filter(Q(cook_time__lte=15) & Q(time="dəqiqə"))[0:15]
+    if time:
+        blogs, custom_range=Paginations(request, time)
+    else:
+        blogs=""
+        custom_range=""
+    context={
+        "blog":blogs,
+        "custom_range":custom_range
+    }
+    return render(request, "recipes/recipes.html",context)
 
 
 def Recipes(request):
