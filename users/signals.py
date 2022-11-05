@@ -17,7 +17,7 @@ def create_profiles(sender, instance, created, **kwargs):
         )
 
         send_mail(
-            'Just Right Eat sizi görməyinə şaddır.',
+            'yemake.com sizi görməyinə şaddır.',
             'Sizi saytımızda görməyimizə şadıq',
             settings.EMAIL_HOST_USER,
             [profile.email],

@@ -151,7 +151,7 @@
   </div>
   <div class="bottom-profile padding-x">
     <div class="recipes underline-div" id="recipes">
-      <p class="head-post">Reseptlərim ({{user_recipes | length}})</p>
+      <p class="head-post">Reseptlər ({{user_recipes | length}})</p>
     </div>
     <div class="cards">
       {% if user_recipes %}
@@ -162,13 +162,13 @@
       </div>
       {% endfor %}
       {% else %}
-      <h2>Ups... Resept paylaşmamısan?😒</h2>
+      <h2>Ups... Resept paylaşmayıb?😒</h2>
       {% endif %}
 
 
     </div>
     <div class="blogs underline-div" id="blogs">
-      <p class="head-post">Bloglarım ({{user_blogs | length}})</p>
+      <p class="head-post">Bloglar ({{user_blogs | length}})</p>
     </div>
     <div class="cards">
       {% if user_blogs %}
@@ -178,11 +178,11 @@
       </div>
       {% endfor %}
       {% else %}
-      <h2>Ups... Blog paylaşmırsan?😯</h2>
+      <h2>Ups... Blog paylaşmayıb?😯</h2>
       {% endif %}
     </div>
     <div class="wishlist underline-div">
-      <p class="head-post">Resept Kitabım ({{user_book | length}}) </p>
+      <p class="head-post">Resept Kitabı ({{user_book | length}}) </p>
 
     </div>
     <div class="cards">
@@ -194,7 +194,7 @@
     </div>
     {% else %}
 
-    <h2>Ups... Resept dəftərin boşdur?🤨</h2>
+    <h2>Ups... Resept dəftəri boşdur?🤨</h2>
     {% endif %}
   </div>
 </div>

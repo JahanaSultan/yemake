@@ -1,10 +1,11 @@
-from tabnanny import verbose
+
 from django.db import models
 from recipes.helper import seo
 from django.utils.crypto import get_random_string
 from users.models import Profile
 from embed_video.fields  import  EmbedVideoField
 from django_quill.fields import QuillField
+from django.utils.text import slugify
 
 
 
@@ -57,9 +58,11 @@ class Blog(models.Model):
     
     def save(self, *arg, **kargs):
         if Blog.objects.filter(title=self.title):
-            self.slug=seo(self.title)+get_random_string(length=4)
+            slug=seo(self.title)+get_random_string(length=4)
+            self.slug=slugify(slug)
         else:
-            self.slug = seo(self.title)
+            slug = seo(self.title)
+            self.slug=slugify(slug)
         super().save(arg,kargs)
     
     def __str__(self):

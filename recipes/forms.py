@@ -1,4 +1,4 @@
-from tkinter import Widget
+
 from django.forms import ModelForm
 from .models import Blog, Review
 from django import forms

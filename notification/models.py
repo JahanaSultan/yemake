@@ -1,6 +1,3 @@
-from email.policy import default
-from random import choices
-from tkinter import CASCADE
 from django.db import models
 from users.models import Profile
 from recipes.models import Blog as Recipe
