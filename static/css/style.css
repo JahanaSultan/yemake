@@ -539,9 +539,11 @@ input:focus {
   height: 40px;
   width: 100px;
   background-color: var(--light-green);
-  padding: 5.5px;
+  padding: 5px;
   border-radius: 0 10px 10px 0;
-  margin-left: -6px;
+  margin-left: -2px;
+  border: 1px solid var(--dark-green);
+
 }
 
 .footer button:hover {

@@ -304,6 +304,7 @@ aside {
   margin: 20px 0;
   color: var(--light-green);
   font-weight: 700;
+  text-align: center;
 }
 
 .notfound .back {
@@ -340,6 +341,12 @@ aside {
   .cards .card {
     width: 49%;
   }
+  .notfound i{
+    font-size: 100px;
+  }
+  .notfound h1{
+    font-size: 40px;
+  }
 }
 
 @media screen and (max-width: 500px) {
@@ -350,5 +357,11 @@ aside {
   .cards .card {
     width: 95%;
     margin: auto;
+  }
+  .notfound i{
+    font-size: 80px;
+  }
+  .notfound h1{
+    font-size: 35px;
   }
 }
