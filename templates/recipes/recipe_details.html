@@ -72,7 +72,7 @@
         </div>{% endif %}
         <div class="content">
 
-            <h1>{{blog.title}}</h1>
+            <h1 class="post-title">{{blog.title}}</h1>
             <p>{{blog.description.html|safe}}</p>
 
         </div>
@@ -82,7 +82,7 @@
 
                 {% if blog.youtube_link %}
                 {% video blog.youtube_link as my_video %}
-                {% video my_video  %}
+                {% video my_video %}
                 {% endvideo %}
                 {% endif %}
 

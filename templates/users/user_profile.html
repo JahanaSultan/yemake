@@ -157,9 +157,11 @@
       {% if user_recipes %}
 
       {% for blog in user_recipes %}
+      {% if blog.isActive %}
       <div class="card">
         {% include "partials/__recipecard.html" %}
       </div>
+      {% endif %}
       {% endfor %}
       {% else %}
       <h2>Ups... Resept paylaşmayıb?😒</h2>
@@ -173,10 +175,12 @@
     <div class="cards">
       {% if user_blogs %}
       {% for blog in user_blogs %}
+       {% if blog.isActive %}
       <div class="card">
         {% include "partials/__blogcard.html" %}
-      </div>
+      </div>{% endif %}
       {% endfor %}
+      
       {% else %}
       <h2>Ups... Blog paylaşmayıb?😯</h2>
       {% endif %}

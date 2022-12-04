@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<title>Xəta!</title>
+{% endblock title %}
+
+{% block content %}
+
+<div class="not-found">
+    <div class="div404">
+         <img src='{% static "image/500.gif" %}' alt=""> 
+    </div>
+    <h1>Xəta Baş Verdi</h1>
+
+    <a href="{% url 'index' %}">Ana Səhifəyə Qayıt</a>
+
+</div>
+
+{% endblock content %}

@@ -30,12 +30,14 @@ from notification.models import Notification
 
 def index(request):
     blogs=Blog.objects.filter(Q(isActive=True)).annotate(num=Count("recipebook")).order_by("-num")[0:15]
+    recipes=Blog.objects.filter(isActive=True)[0:25]
     wrts=Blg.objects.filter(Q(inSlide=True) & Q(isActive=True)).order_by("-created")[0:15]
-    video=Blog.objects.filter(youtube_link__isnull=False)[0:15]
-    diet=Blog.objects.filter(category__title='Diet')[0:15]
-    time=Blog.objects.filter(Q(cook_time__lte=15) & Q(time="dəqiqə"))[0:15]
+    video=Blog.objects.filter(Q(youtube_link__isnull=False) & Q(isActive=True))[0:15]
+    diet=Blog.objects.filter(Q(category__title='Diet') & Q(isActive=True) )[0:15]
+    time=Blog.objects.filter(Q(cook_time__lte=15) & Q(time="dəqiqə") & Q(isActive=True))[0:15]
     categories= Category.objects.all().order_by('title').order_by("title")
     context = {
+        "recipes":recipes,
         "blog": blogs,
         "category":categories,
         "like":video,
@@ -135,3 +137,6 @@ def newsletter(request):
 
 def error_404_view(request, exception):
     return render(request, '404.html')
+
+def error_500(request):
+    return render(request, '500.html')

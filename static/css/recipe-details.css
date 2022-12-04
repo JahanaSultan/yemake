@@ -117,6 +117,13 @@ i.fa-solid.fa-bookmark{
     font-weight: 700;
     margin-bottom: 20px;
 }
+.content ul li{
+  list-style-type: circle!important;
+}
+.content a{
+  text-decoration: underline;
+  color: var(--yellow);
+}
 .details .top button{
   background-color: transparent;
   border: 0;
@@ -220,8 +227,8 @@ p.time-created{
  color:  rgba(0, 0, 0, 0.571)!important;
 }
 
-.video{
-  width: 100%;
+.video iframe {
+  width: 100%!important;
 }
 
 @media screen and (max-width:964px) {

@@ -79,7 +79,7 @@
                     </a>
                     {% endfor %}
                     {% for blog in active_blog %}
-                    <a href="{% url 'blogdetails' blog.post.slug %}">
+                    <a href="{% url 'blogdetail' blog.post.slug %}">
                         <li><span>{{blog.post.title}}</span> adlı blogunuz artıq yayındadır. <em>{{blog.date}}</em>
                         </li>
                     </a>

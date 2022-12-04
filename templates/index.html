@@ -16,7 +16,7 @@
         <div class="recentposts">
             <h3 class="title">Ən son reseptlər:</h3>
 
-            <ol> {% for blog in blog %}
+            <ol> {% for blog in recipes %}
                 <li><a href="{% url 'blogdetails' blog.slug %}">{{blog.title | truncatechars:60}}</a></li>
                 {% endfor %}
             </ol>
@@ -61,8 +61,8 @@
 
         </div>
 
-        <!-------x-------Slider-------x------->
-        <!---------------Slider--------------->
+        <!------x-------Slider-------x------->
+        <!--------------Slider--------------->
         <h3 class="title">15 dəqiqədən az vaxtınızı alacaq reseptlər</h3>
         <div class="cards">
             <div class="swiper mySwiper">
