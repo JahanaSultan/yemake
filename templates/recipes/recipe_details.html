@@ -1,6 +1,15 @@
 {% extends 'base.html' %}
 {% load embed_video_tags %}
 {% load static %}
+{% block meta %}
+<link rel="canonical" href="https://www.yemake.com/{% url 'blogdetails' blog.slug %}"/>
+<meta property="og:title" content="{{blog.title}}">
+<meta property="og:description" content="">
+<meta property="og:type" content="recipe">
+<meta property="og:url" content="https://www.yemake.com/{% url 'blogdetails' blog.slug %}">
+<meta property="og:site_name" content="yemake.com">
+<meta property="og:image" content="https://www.yemake.com/{{blog.image.url}}"/>
+{% endblock meta %}
 {% block css %}
 <link rel="stylesheet" href='{% static '/css/recipe-details.css' %}?{% now "U" %}'>
 <link rel="stylesheet" href='{% static '/css/index.css' %}?{% now "U" %}'>
@@ -96,7 +105,7 @@
 
                 <h2 class="add-comment">Şərh Əlavə Edin</h2>
 
-                <!-----COMMENT FORM----->
+                <!-----COMMENT FORM------>
 
                 <div class="comment">
                     <img src="{{user.profile.profile_image.url}}" alt="">

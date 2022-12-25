@@ -142,8 +142,6 @@ bottom_profile.addEventListener("click",()=>{
 })
 
 
-console.log(window.innerWidth)
-
 if(window.innerWidth > 1026){
     $('.notifications').click(function(){
         document.querySelector(".dropdown-notification").classList.toggle("show-dropdown") 

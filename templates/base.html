@@ -8,6 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="author" content="Jahana Sultan" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    {% block meta %}{% endblock meta %}
     <link rel="icon" href="{% static 'image/icon.png' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
         integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A=="
@@ -16,24 +17,24 @@
     <!---------------- Alertify CSS ---------------->
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css" />
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css" />
-    <!-------x-------- Alertify CSS --------x------->
-    <link rel="stylesheet" href='{% static '/css/style.css' %}?{% now "U" %}'>
+    <!-------x----- Alertify CSS -----x------>
 
-    {% block css %}{% endblock  %}
-    {% block title %}<title>Ana Səhifə</title>{% endblock  %}
+    <link rel="stylesheet" href='{% static '/css/style.css' %}?{% now "U" %}'>
+    {% block css %}{% endblock css %}
+    {% block title %}<title>Ana Səhifə</title>{% endblock title %}
+
 </head>
 
-<!-- LOADING GIF -->
+<!---- LOADING GIF -->
 
 <div class="loader">
     <img src="{% static 'image/loader.gif' %}" alt="">
     {% comment %} <h2>Food Loading</h2> {% endcomment %}
 </div>
 
-{% include "partials/__modal.html" %}
 
 <body class="bg">
-    <!---------------Navigation--------------->
+    <!---------------Navigation-------------->
     <nav class="padding-x">
         <div class="logo">
             <a href="{% url 'index' %}">
@@ -184,14 +185,13 @@
 
     </div>
     {% endif %}
-    <!-------x-------Navigation-------x------->
+    <!------x-------Navigation------x------>
 
-
+    {% include "partials/__modal.html" %}
     {% block content %}
     {% endblock  %}
 
-
-    <!-- -------------Footer------------------->
+    <!-- -------------Footer------------------>
     <footer>
         <div class="footer">
             <div class="icons">
@@ -229,9 +229,9 @@
             </p>
         </div>
     </footer>
-    <!-------x-------Footer-----------x----- -->
+    <!-------x-------Footer--------x----- -->
 
-    <!---------------JS links--------------->
+    <!---------------JS links-------------->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"
         integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
