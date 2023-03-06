@@ -231,6 +231,14 @@ border-radius: 50%;
   left: 0!important;
 }
 
+.all-posts{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 
 /*---------------- EDIT AND DELETE DOTS -------------------------*/
 
